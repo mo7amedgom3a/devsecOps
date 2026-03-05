@@ -15,6 +15,38 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
+      # ---------------------------------------------------------
+      # CHECKOV SCANNER (Terraform IaC)
+      # ---------------------------------------------------------
+      - name: Run Checkov IaC Scan
+        uses: bridgecrewio/checkov-action@master
+        with:
+          directory: .
+          framework: terraform
+          # Set to true for this test run so it doesn't immediately kill the pipeline
+          soft_fail: true 
+
+      # ---------------------------------------------------------
+      # TRIVY SCANNER (Terraform IaC)
+      # ---------------------------------------------------------
+      - name: Run Trivy IaC Scan
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'config'
+          hide-progress: false
+          format: 'table'
+          # Set to 0 for this test run to view logs side-by-side
+          exit-code: '0' 
+          severity: 'CRITICAL,HIGH'
+
+      # ---------------------------------------------------------
+      # SNYK TERRAFORM SCANNER (Terraform IaC)
+      # ---------------------------------------------------------
+      - name: Run Snyk Terraform IaC Scan
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        run: snyk iac test --file=.
+
       - name: Build Vulnerable Docker Image
         run: docker build -t vulnerable-python-app:local .
 
