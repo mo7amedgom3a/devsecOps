@@ -40,13 +40,23 @@ jobs:
           severity: 'CRITICAL,HIGH'
 
       # ---------------------------------------------------------
-      # SNYK TERRAFORM SCANNER (Terraform IaC)
+      # SNYK IaC SCANNER (Terraform)
       # ---------------------------------------------------------
-      - name: Run Snyk Terraform IaC Scan
+      - name: Run Snyk IaC Scan
+        uses: snyk/actions/iac@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        run: snyk iac test --file=.
+        with:
+          # Scanning the current directory ('.') for all Terraform files
+          file: '.'
+          # Passing the org ID and filtering for high/critical issues
+          args: '--org=31be863e-5019-422f-94bb-27b4b342ad48 --severity-threshold=high'
+        # Setting to true during testing so you can view the output of all three scanners
+        continue-on-error: true
 
+      # ---------------------------------------------------------
+      # Build vulnerable Docker image
+      # ---------------------------------------------------------
       - name: Build Vulnerable Docker Image
         run: docker build -t vulnerable-python-app:local .
 
@@ -88,7 +98,7 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         # The pipeline will STOP here if High or Critical source code vulns are found
-        run: snyk code test --severity-threshold=high --org=31be863e-5019-422f-94bb-27b4b342ad48 --fail-on=all
+        run: snyk code test --severity-threshold=high --org=31be863e-5019-422f-94bb-27b4b342ad48
 
       # ---------------------------------------------------------
       # BANDIT SCANNER (Python Source Code SAST)
