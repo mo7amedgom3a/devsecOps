@@ -56,7 +56,7 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         # The pipeline will STOP here if High or Critical source code vulns are found
-        run: snyk code test --severity-threshold=high --org=YOUR-ORG-ID-HERE
+        run: snyk code test --severity-threshold=high --org=31be863e-5019-422f-94bb-27b4b342ad48 --fail-on=all
 
       # ---------------------------------------------------------
       # BANDIT SCANNER (Python Source Code SAST)
