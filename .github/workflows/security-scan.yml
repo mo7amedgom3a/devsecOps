@@ -1,0 +1,47 @@
+name: Container Security Scan
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  security-scan:
+    name: Build and Scan Docker Image
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Build Vulnerable Docker Image
+        run: docker build -t vulnerable-python-app:local .
+
+      # ---------------------------------------------------------
+      # TRIVY SCANNER
+      # ---------------------------------------------------------
+      - name: Run Trivy Vulnerability Scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'vulnerable-python-app:local'
+          format: 'table'
+          # Set exit-code to '0' to see results without breaking the pipeline during this test
+          exit-code: '0' 
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH'
+
+      # ---------------------------------------------------------
+      # SNYK SCANNER
+      # ---------------------------------------------------------
+      - name: Run Snyk Container Scanner
+        uses: snyk/actions/docker@master
+        env:
+          # This secret must be configured in your GitHub repository settings
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          image: 'vulnerable-python-app:local'
+          args: '--file=Dockerfile --severity-threshold=high'
+        # continue-on-error prevents the pipeline from turning red if vulnerabilities are found
+        continue-on-error: true

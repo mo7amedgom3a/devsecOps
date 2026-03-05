@@ -1,0 +1,5 @@
+# Intentionally vulnerable package versions for testing Snyk and Trivy
+Flask==0.12.2      # Vulnerable to multiple CVEs
+Jinja2==2.10       # Sandbox escape vulnerabilities
+requests==2.19.1   # Information disclosure vulnerabilities
+Werkzeug==0.15.2   # XSS and DoS vulnerabilities
