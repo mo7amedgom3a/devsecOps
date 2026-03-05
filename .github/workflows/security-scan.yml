@@ -25,7 +25,9 @@ jobs:
         uses: aquasecurity/trivy-action@master
         with:
           image-ref: 'vulnerable-python-app:local'
-          format: 'table'          
+          format: 'table'
+          # Set exit-code to '0' to see results without breaking the pipeline during this test
+          exit-code: '0' 
           ignore-unfixed: true
           vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH'
@@ -40,6 +42,6 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           image: 'vulnerable-python-app:local'
-          args: '--file=Dockerfile --severity-threshold=high'
+          args: '--file=Dockerfile --severity-threshold=high --org=31be863e-5019-422f-94bb-27b4b342ad48 '
         # continue-on-error prevents the pipeline from turning red if vulnerabilities are found
         continue-on-error: true
