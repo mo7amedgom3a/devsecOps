@@ -45,3 +45,28 @@ jobs:
           args: '--file=Dockerfile --severity-threshold=high --org=31be863e-5019-422f-94bb-27b4b342ad48 '
         # continue-on-error prevents the pipeline from turning red if vulnerabilities are found
         continue-on-error: true
+
+      # ---------------------------------------------------------
+      # SNYK CODE SCANNER (Python Source Code SAST)
+      # ---------------------------------------------------------
+      - name: Setup Snyk CLI
+        uses: snyk/actions/setup@master
+
+      - name: Run Snyk Code SAST Scan
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        # The pipeline will STOP here if High or Critical source code vulns are found
+        run: snyk code test --severity-threshold=high --org=YOUR-ORG-ID-HERE
+
+      # ---------------------------------------------------------
+      # BANDIT SCANNER (Python Source Code SAST)
+      # ---------------------------------------------------------
+      - name: Install Bandit
+        run: pip install bandit
+
+      - name: Run Bandit SAST Scan
+        # -r: scan recursively
+        # -lll: only report HIGH severity issues (and fail the pipeline if found)
+        # -iii: only report HIGH confidence issues
+        run: bandit -r . -lll -iii
+
