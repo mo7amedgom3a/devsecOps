@@ -50,7 +50,7 @@ jobs:
           # Scanning the current directory ('.') for all Terraform files
           file: '.'
           # Passing the org ID and filtering for high/critical issues
-          args: '--org=31be863e-5019-422f-94bb-27b4b342ad48 --severity-threshold=high'
+          args: '--org=31be863e-5019-422f-94bb-27b4b342ad48 --severity-threshold=high --report'
         # Setting to true during testing so you can view the output of all three scanners
         continue-on-error: true
 
