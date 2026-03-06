@@ -32,7 +32,7 @@ resource "aws_security_group" "web_sg" {
     to_port     = 22
     protocol    = "tcp"
     # DANGEROUS: Allowing SSH access from 0.0.0.0/0
-    cidr_blocks = ["0.0.0.0/0"] 
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   ingress {
@@ -42,7 +42,7 @@ resource "aws_security_group" "web_sg" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
-  
+
   egress {
     from_port   = 0
     to_port     = 0
@@ -55,12 +55,12 @@ resource "aws_security_group" "web_sg" {
 # VULNERABILITY 3: EC2 Instance Misconfigurations
 # ---------------------------------------------------------
 resource "aws_instance" "web_server" {
-  ami                         = "ami-0c55b159cbfafe1f0" 
+  ami                         = "ami-0c55b159cbfafe1f0"
   instance_type               = "t2.micro"
   # DANGEROUS: Automatically assigning a public IP
-  associate_public_ip_address = true 
+  associate_public_ip_address = true
   vpc_security_group_ids      = [aws_security_group.web_sg.id]
-  
+
   # DANGEROUS: Hardcoding secrets into the EC2 User Data script
   user_data = <<-EOF
               #!/bin/bash

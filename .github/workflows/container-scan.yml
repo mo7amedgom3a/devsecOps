@@ -10,7 +10,7 @@ jobs:
   docker-container:
     name: Docker Image Scan
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -29,7 +29,7 @@ jobs:
         with:
           image-ref: 'vulnerable-python-app:local'
           format: 'table'
-          exit-code: '0' 
+          exit-code: '0'
           ignore-unfixed: true
           vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH'

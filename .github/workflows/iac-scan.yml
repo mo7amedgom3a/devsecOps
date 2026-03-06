@@ -10,7 +10,7 @@ jobs:
   terraform-iac:
     name: Infrastructure Code Scan
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -23,7 +23,7 @@ jobs:
         with:
           directory: .
           framework: terraform
-          soft_fail: true 
+          soft_fail: true
 
       # ---------------------------------------------------------
       # TRIVY SCANNER (Terraform IaC)
@@ -34,7 +34,7 @@ jobs:
           scan-type: 'config'
           hide-progress: false
           format: 'table'
-          exit-code: '0' 
+          exit-code: '0'
           severity: 'CRITICAL,HIGH'
 
       # ---------------------------------------------------------

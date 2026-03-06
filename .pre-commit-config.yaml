@@ -1,0 +1,33 @@
+# .pre-commit-config.yaml
+repos:
+  # ---------------------------------------------------------
+  # 1. Standard Git Hygiene Hooks
+  # ---------------------------------------------------------
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-added-large-files
+      - id: detect-private-key
+
+  # ---------------------------------------------------------
+  # 2. Python Security (Bandit)
+  # ---------------------------------------------------------
+  - repo: https://github.com/PyCQA/bandit
+    rev: 1.7.7
+    hooks:
+      - id: bandit
+        args: ["-c", "pyproject.toml", "-lll", "-iii"]
+        additional_dependencies: ["bandit[toml]"]
+
+  # ---------------------------------------------------------
+  # 3. Terraform Security (Checkov)
+  # ---------------------------------------------------------
+  - repo: https://github.com/bridgecrewio/checkov
+    rev: 3.2.43
+    hooks:
+      - id: checkov
+        # The -d flag tells Checkov to scan the directory
+        args: ["-d", "."]

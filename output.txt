@@ -1,0 +1,2299 @@
+trim trailing whitespace.................................................[42mPassed[m
+fix end of files.........................................................[42mPassed[m
+check yaml...............................................................[42mPassed[m
+check for added large files..............................................[42mPassed[m
+detect private key.......................................................[42mPassed[m
+bandit...................................................................[41mFailed[m
+[2m- hook id: bandit[m
+[2m- exit code: 2[m
+
+[main]	ERROR	pyproject.toml : Could not read config file.
+
+Checkov..................................................................[41mFailed[m
+[2m- hook id: checkov[m
+[2m- exit code: 1[m
+
+[ dockerfile framework ]:   0% 0/1 [00:00<?, ?it/s][0m[0m[0m[ dockerfile framework ]:   0% 0/1 [00:00<?, ?it/s, Current File Scanned=../../../../Dockerfile][0m[0m[0m[0m[0m[0m[ dockerfile framework ]: 100% 1/1 [00:00<00:00, 227.06it/s, Current File Scanned=../../../../Dockerfile][0m[0m[0m
+[0m[0m[ secrets framework ]:   0% 0/2 [00:00<?, ?it/s][0m[0m[0m[ terraform framework ]:   0% 0/1 [00:00<?, ?it/s][0m[0m[0m[ terraform framework ]:   0% 0/1 [00:00<?, ?it/s, Current File Scanned=main.tf][0m[0m[0m[0m[0m[0m[ terraform framework ]: 100% 1/1 [00:00<00:00, 19.95it/s, Current File Scanned=main.tf][0m[0m[0m
+[0m[0m[0m[ secrets framework ]:   0% 0/2 [00:00<?, ?it/s, Current File Scanned=./Dockerfile][0m[0m[0m[ secrets framework ]:  50% 1/2 [00:00<00:00,  4.87it/s, Current File Scanned=./Dockerfile][0m[0m[0m[0m[ secrets framework ]:  50% 1/2 [00:00<00:00,  4.87it/s, Current File Scanned=./main.tf]   [0m[0m[0m[0m[0m[0m[ secrets framework ]: 100% 2/2 [00:00<00:00,  6.59it/s, Current File Scanned=./main.tf][0m[0m[0m
+[0m[0m[0m[ github_actions framework ]:   0% 0/3 [00:00<?, ?it/s][0m[0m[0m[ github_actions framework ]:   0% 0/3 [00:00<?, ?it/s, Current File Scanned=.github/workflows/container-scan.yml][0m[0m[0m[ github_actions framework ]:  33% 1/3 [00:00<00:00, 120.13it/s, Current File Scanned=.github/workflows/iac-scan.yml][0m[0m[0m[ github_actions framework ]:  67% 2/3 [00:00<00:00, 146.50it/s, Current File Scanned=.github/workflows/sast-scan.yml][0m[0m[0m[0m[0m[0m[ github_actions framework ]: 100% 3/3 [00:00<00:00, 156.84it/s, Current File Scanned=.github/workflows/sast-scan.yml][0m[0m[0m
+[0m[0m[0m
+
+       _               _              
+   ___| |__   ___  ___| | _______   __
+  / __| '_ \ / _ \/ __| |/ / _ \ \ / /
+ | (__| | | |  __/ (__|   < (_) \ V / 
+  \___|_| |_|\___|\___|_|\_\___/ \_/  
+                                      
+By Prisma Cloud | version: 3.2.43 
+Update available [30m3.2.43[0m -> [32m3.2.507[0m
+Run [35mpip3 install -U checkov[0m to update 
+
+[0m[0m[0m
+[0m[0m[0m[34mterraform scan results:
+[0m[36m
+Passed checks: 9, Failed checks: 20, Skipped checks: 0
+
+[0m[97mCheck: CKV_AWS_93: "Ensure S3 bucket policy does not lockout all but root user. (Prevent lockouts needing root account fixes)"
+[0m[32m	PASSED for resource: aws_s3_bucket.insecure_bucket
+[0m[35m	File: /main.tf:8-10
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/bc-aws-s3-24
+[0m[0m[97mCheck: CKV_AWS_277: "Ensure no security groups allow ingress from 0.0.0.0:0 to port -1"
+[0m[32m	PASSED for resource: aws_security_group.web_sg
+[0m[35m	File: /main.tf:25-52
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-aws-security-group-does-not-allow-all-traffic-on-all-ports
+[0m[0m[97mCheck: CKV_AWS_25: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 3389"
+[0m[32m	PASSED for resource: aws_security_group.web_sg
+[0m[35m	File: /main.tf:25-52
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-2
+[0m[0m[97mCheck: CKV_AWS_46: "Ensure no hard-coded secrets exist in EC2 user data"
+[0m[32m	PASSED for resource: aws_instance.web_server
+[0m[35m	File: /main.tf:57-69
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/secrets-policies/bc-aws-secrets-1
+[0m[0m[97mCheck: CKV_AWS_41: "Ensure no hard coded AWS access key and secret key exists in provider"
+[0m[32m	PASSED for resource: aws.default
+[0m[35m	File: /main.tf:1-3
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/secrets-policies/bc-aws-secrets-5
+[0m[0m[97mCheck: CKV_AWS_57: "S3 Bucket has an ACL defined which allows public WRITE access."
+[0m[32m	PASSED for resource: aws_s3_bucket.insecure_bucket
+[0m[35m	File: /main.tf:8-10
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-2-acl-write-permissions-everyone
+[0m[0m[97mCheck: CKV2_AWS_5: "Ensure that Security Groups are attached to another resource"
+[0m[32m	PASSED for resource: aws_security_group.web_sg
+[0m[35m	File: /main.tf:25-52
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-that-security-groups-are-attached-to-ec2-instances-or-elastic-network-interfaces-enis
+[0m[0m[97mCheck: CKV_AWS_19: "Ensure all data stored in the S3 bucket is securely encrypted at rest"
+[0m[32m	PASSED for resource: aws_s3_bucket.insecure_bucket
+[0m[35m	File: /main.tf:8-10
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-14-data-encrypted-at-rest
+[0m[0m[97mCheck: CKV_AWS_20: "S3 Bucket has an ACL defined which allows public READ access."
+[0m[32m	PASSED for resource: aws_s3_bucket.insecure_bucket
+[0m[35m	File: /main.tf:8-10
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-1-acl-read-permissions-everyone
+[0m[0m[97mCheck: CKV_AWS_53: "Ensure S3 bucket has block public ACLS enabled"
+[0m[31m	FAILED for resource: aws_s3_bucket_public_access_block.insecure_bucket_access
+[0m[35m	File: /main.tf:12-20
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/bc-aws-s3-19
+[0m[0m
+		[37m12 | [33mresource "aws_s3_bucket_public_access_block" "insecure_bucket_access" {
+		[37m13 | [33m  bucket = aws_s3_bucket.insecure_bucket.id
+		[37m14 | [33m
+		[37m15 |   # DANGEROUS: Explicitly disabling public access blocks
+		[37m16 | [33m  block_public_acls       = false
+		[37m17 | [33m  block_public_policy     = false
+		[37m18 | [33m  ignore_public_acls      = false
+		[37m19 | [33m  restrict_public_buckets = false
+		[37m20 | [33m}
+
+[97mCheck: CKV_AWS_54: "Ensure S3 bucket has block public policy enabled"
+[0m[31m	FAILED for resource: aws_s3_bucket_public_access_block.insecure_bucket_access
+[0m[35m	File: /main.tf:12-20
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/bc-aws-s3-20
+[0m[0m
+		[37m12 | [33mresource "aws_s3_bucket_public_access_block" "insecure_bucket_access" {
+		[37m13 | [33m  bucket = aws_s3_bucket.insecure_bucket.id
+		[37m14 | [33m
+		[37m15 |   # DANGEROUS: Explicitly disabling public access blocks
+		[37m16 | [33m  block_public_acls       = false
+		[37m17 | [33m  block_public_policy     = false
+		[37m18 | [33m  ignore_public_acls      = false
+		[37m19 | [33m  restrict_public_buckets = false
+		[37m20 | [33m}
+
+[97mCheck: CKV_AWS_55: "Ensure S3 bucket has ignore public ACLs enabled"
+[0m[31m	FAILED for resource: aws_s3_bucket_public_access_block.insecure_bucket_access
+[0m[35m	File: /main.tf:12-20
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/bc-aws-s3-21
+[0m[0m
+		[37m12 | [33mresource "aws_s3_bucket_public_access_block" "insecure_bucket_access" {
+		[37m13 | [33m  bucket = aws_s3_bucket.insecure_bucket.id
+		[37m14 | [33m
+		[37m15 |   # DANGEROUS: Explicitly disabling public access blocks
+		[37m16 | [33m  block_public_acls       = false
+		[37m17 | [33m  block_public_policy     = false
+		[37m18 | [33m  ignore_public_acls      = false
+		[37m19 | [33m  restrict_public_buckets = false
+		[37m20 | [33m}
+
+[97mCheck: CKV_AWS_56: "Ensure S3 bucket has 'restrict_public_buckets' enabled"
+[0m[31m	FAILED for resource: aws_s3_bucket_public_access_block.insecure_bucket_access
+[0m[35m	File: /main.tf:12-20
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/bc-aws-s3-22
+[0m[0m
+		[37m12 | [33mresource "aws_s3_bucket_public_access_block" "insecure_bucket_access" {
+		[37m13 | [33m  bucket = aws_s3_bucket.insecure_bucket.id
+		[37m14 | [33m
+		[37m15 |   # DANGEROUS: Explicitly disabling public access blocks
+		[37m16 | [33m  block_public_acls       = false
+		[37m17 | [33m  block_public_policy     = false
+		[37m18 | [33m  ignore_public_acls      = false
+		[37m19 | [33m  restrict_public_buckets = false
+		[37m20 | [33m}
+
+[97mCheck: CKV_AWS_23: "Ensure every security groups rule has a description"
+[0m[31m	FAILED for resource: aws_security_group.web_sg
+[0m[35m	File: /main.tf:25-52
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-31
+[0m[0m
+		[37m25 | [33mresource "aws_security_group" "web_sg" {
+		[37m26 | [33m  name        = "allow_all_traffic"
+		[37m27 | [33m  description = "Allow all inbound traffic"
+		[37m28 | [33m
+		[37m29 | [33m  ingress {
+		[37m30 | [33m    description = "SSH from anywhere"
+		[37m31 | [33m    from_port   = 22
+		[37m32 | [33m    to_port     = 22
+		[37m33 | [33m    protocol    = "tcp"
+		[37m34 |     # DANGEROUS: Allowing SSH access from 0.0.0.0/0
+		[37m35 | [33m    cidr_blocks = ["0.0.0.0/0"]
+		[37m36 | [33m  }
+		[37m37 | [33m
+		[37m38 | [33m  ingress {
+		[37m39 | [33m    description = "HTTP from anywhere"
+		[37m40 | [33m    from_port   = 80
+		[37m41 | [33m    to_port     = 80
+		[37m42 | [33m    protocol    = "tcp"
+		[37m43 | [33m    cidr_blocks = ["0.0.0.0/0"]
+		[37m44 | [33m  }
+		[37m45 | [33m
+		[37m46 | [33m  egress {
+		[37m47 | [33m    from_port   = 0
+		[37m48 | [33m    to_port     = 0
+		[37m49 | [33m    protocol    = "-1"
+		[37m50 | [33m    cidr_blocks = ["0.0.0.0/0"]
+		[37m51 | [33m  }
+		[37m52 | [33m}
+
+[97mCheck: CKV_AWS_24: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 22"
+[0m[31m	FAILED for resource: aws_security_group.web_sg
+[0m[35m	File: /main.tf:25-52
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-1-port-security
+[0m[0m
+		[37m25 | [33mresource "aws_security_group" "web_sg" {
+		[37m26 | [33m  name        = "allow_all_traffic"
+		[37m27 | [33m  description = "Allow all inbound traffic"
+		[37m28 | [33m
+		[37m29 | [33m  ingress {
+		[37m30 | [33m    description = "SSH from anywhere"
+		[37m31 | [33m    from_port   = 22
+		[37m32 | [33m    to_port     = 22
+		[37m33 | [33m    protocol    = "tcp"
+		[37m34 |     # DANGEROUS: Allowing SSH access from 0.0.0.0/0
+		[37m35 | [33m    cidr_blocks = ["0.0.0.0/0"]
+		[37m36 | [33m  }
+		[37m37 | [33m
+		[37m38 | [33m  ingress {
+		[37m39 | [33m    description = "HTTP from anywhere"
+		[37m40 | [33m    from_port   = 80
+		[37m41 | [33m    to_port     = 80
+		[37m42 | [33m    protocol    = "tcp"
+		[37m43 | [33m    cidr_blocks = ["0.0.0.0/0"]
+		[37m44 | [33m  }
+		[37m45 | [33m
+		[37m46 | [33m  egress {
+		[37m47 | [33m    from_port   = 0
+		[37m48 | [33m    to_port     = 0
+		[37m49 | [33m    protocol    = "-1"
+		[37m50 | [33m    cidr_blocks = ["0.0.0.0/0"]
+		[37m51 | [33m  }
+		[37m52 | [33m}
+
+[97mCheck: CKV_AWS_260: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 80"
+[0m[31m	FAILED for resource: aws_security_group.web_sg
+[0m[35m	File: /main.tf:25-52
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-aws-security-groups-do-not-allow-ingress-from-00000-to-port-80
+[0m[0m
+		[37m25 | [33mresource "aws_security_group" "web_sg" {
+		[37m26 | [33m  name        = "allow_all_traffic"
+		[37m27 | [33m  description = "Allow all inbound traffic"
+		[37m28 | [33m
+		[37m29 | [33m  ingress {
+		[37m30 | [33m    description = "SSH from anywhere"
+		[37m31 | [33m    from_port   = 22
+		[37m32 | [33m    to_port     = 22
+		[37m33 | [33m    protocol    = "tcp"
+		[37m34 |     # DANGEROUS: Allowing SSH access from 0.0.0.0/0
+		[37m35 | [33m    cidr_blocks = ["0.0.0.0/0"]
+		[37m36 | [33m  }
+		[37m37 | [33m
+		[37m38 | [33m  ingress {
+		[37m39 | [33m    description = "HTTP from anywhere"
+		[37m40 | [33m    from_port   = 80
+		[37m41 | [33m    to_port     = 80
+		[37m42 | [33m    protocol    = "tcp"
+		[37m43 | [33m    cidr_blocks = ["0.0.0.0/0"]
+		[37m44 | [33m  }
+		[37m45 | [33m
+		[37m46 | [33m  egress {
+		[37m47 | [33m    from_port   = 0
+		[37m48 | [33m    to_port     = 0
+		[37m49 | [33m    protocol    = "-1"
+		[37m50 | [33m    cidr_blocks = ["0.0.0.0/0"]
+		[37m51 | [33m  }
+		[37m52 | [33m}
+
+[97mCheck: CKV_AWS_126: "Ensure that detailed monitoring is enabled for EC2 instances"
+[0m[31m	FAILED for resource: aws_instance.web_server
+[0m[35m	File: /main.tf:57-69
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/ensure-that-detailed-monitoring-is-enabled-for-ec2-instances
+[0m[0m
+		[37m57 | [33mresource "aws_instance" "web_server" {
+		[37m58 | [33m  ami                         = "ami-0c55b159cbfafe1f0"
+		[37m59 | [33m  instance_type               = "t2.micro"
+		[37m60 |   # DANGEROUS: Automatically assigning a public IP
+		[37m61 | [33m  associate_public_ip_address = true
+		[37m62 | [33m  vpc_security_group_ids      = [aws_security_group.web_sg.id]
+		[37m63 | [33m
+		[37m64 |   # DANGEROUS: Hardcoding secrets into the EC2 User Data script
+		[37m65 | [33m  user_data = <<-EOF
+		[37m66 |               #!/bin/bash
+		[37m67 | [33m              echo "export DB_PASSWORD=super_secret_db_pass" >> /etc/environment
+		[37m68 | [33m              EOF
+		[37m69 | [33m}
+
+[97mCheck: CKV_AWS_135: "Ensure that EC2 is EBS optimized"
+[0m[31m	FAILED for resource: aws_instance.web_server
+[0m[35m	File: /main.tf:57-69
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-ec2-is-ebs-optimized
+[0m[0m
+		[37m57 | [33mresource "aws_instance" "web_server" {
+		[37m58 | [33m  ami                         = "ami-0c55b159cbfafe1f0"
+		[37m59 | [33m  instance_type               = "t2.micro"
+		[37m60 |   # DANGEROUS: Automatically assigning a public IP
+		[37m61 | [33m  associate_public_ip_address = true
+		[37m62 | [33m  vpc_security_group_ids      = [aws_security_group.web_sg.id]
+		[37m63 | [33m
+		[37m64 |   # DANGEROUS: Hardcoding secrets into the EC2 User Data script
+		[37m65 | [33m  user_data = <<-EOF
+		[37m66 |               #!/bin/bash
+		[37m67 | [33m              echo "export DB_PASSWORD=super_secret_db_pass" >> /etc/environment
+		[37m68 | [33m              EOF
+		[37m69 | [33m}
+
+[97mCheck: CKV_AWS_79: "Ensure Instance Metadata Service Version 1 is not enabled"
+[0m[31m	FAILED for resource: aws_instance.web_server
+[0m[35m	File: /main.tf:57-69
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/bc-aws-general-31
+[0m[0m
+		[37m57 | [33mresource "aws_instance" "web_server" {
+		[37m58 | [33m  ami                         = "ami-0c55b159cbfafe1f0"
+		[37m59 | [33m  instance_type               = "t2.micro"
+		[37m60 |   # DANGEROUS: Automatically assigning a public IP
+		[37m61 | [33m  associate_public_ip_address = true
+		[37m62 | [33m  vpc_security_group_ids      = [aws_security_group.web_sg.id]
+		[37m63 | [33m
+		[37m64 |   # DANGEROUS: Hardcoding secrets into the EC2 User Data script
+		[37m65 | [33m  user_data = <<-EOF
+		[37m66 |               #!/bin/bash
+		[37m67 | [33m              echo "export DB_PASSWORD=super_secret_db_pass" >> /etc/environment
+		[37m68 | [33m              EOF
+		[37m69 | [33m}
+
+[97mCheck: CKV_AWS_8: "Ensure all data stored in the Launch configuration or instance Elastic Blocks Store is securely encrypted"
+[0m[31m	FAILED for resource: aws_instance.web_server
+[0m[35m	File: /main.tf:57-69
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/general-13
+[0m[0m
+		[37m57 | [33mresource "aws_instance" "web_server" {
+		[37m58 | [33m  ami                         = "ami-0c55b159cbfafe1f0"
+		[37m59 | [33m  instance_type               = "t2.micro"
+		[37m60 |   # DANGEROUS: Automatically assigning a public IP
+		[37m61 | [33m  associate_public_ip_address = true
+		[37m62 | [33m  vpc_security_group_ids      = [aws_security_group.web_sg.id]
+		[37m63 | [33m
+		[37m64 |   # DANGEROUS: Hardcoding secrets into the EC2 User Data script
+		[37m65 | [33m  user_data = <<-EOF
+		[37m66 |               #!/bin/bash
+		[37m67 | [33m              echo "export DB_PASSWORD=super_secret_db_pass" >> /etc/environment
+		[37m68 | [33m              EOF
+		[37m69 | [33m}
+
+[97mCheck: CKV_AWS_88: "EC2 instance should not have public IP."
+[0m[31m	FAILED for resource: aws_instance.web_server
+[0m[35m	File: /main.tf:57-69
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/public-policies/public-12
+[0m[0m
+		[37m57 | [33mresource "aws_instance" "web_server" {
+		[37m58 | [33m  ami                         = "ami-0c55b159cbfafe1f0"
+		[37m59 | [33m  instance_type               = "t2.micro"
+		[37m60 |   # DANGEROUS: Automatically assigning a public IP
+		[37m61 | [33m  associate_public_ip_address = true
+		[37m62 | [33m  vpc_security_group_ids      = [aws_security_group.web_sg.id]
+		[37m63 | [33m
+		[37m64 |   # DANGEROUS: Hardcoding secrets into the EC2 User Data script
+		[37m65 | [33m  user_data = <<-EOF
+		[37m66 |               #!/bin/bash
+		[37m67 | [33m              echo "export DB_PASSWORD=super_secret_db_pass" >> /etc/environment
+		[37m68 | [33m              EOF
+		[37m69 | [33m}
+
+[97mCheck: CKV2_AWS_62: "Ensure S3 buckets should have event notifications enabled"
+[0m[31m	FAILED for resource: aws_s3_bucket.insecure_bucket
+[0m[35m	File: /main.tf:8-10
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/bc-aws-2-62
+[0m[0m
+		[37m8  | [33mresource "aws_s3_bucket" "insecure_bucket" {
+		[37m9  | [33m  bucket = "company-public-data-bucket-123"
+		[37m10 | [33m}
+
+[97mCheck: CKV_AWS_145: "Ensure that S3 buckets are encrypted with KMS by default"
+[0m[31m	FAILED for resource: aws_s3_bucket.insecure_bucket
+[0m[35m	File: /main.tf:8-10
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-s3-buckets-are-encrypted-with-kms-by-default
+[0m[0m
+		[37m8  | [33mresource "aws_s3_bucket" "insecure_bucket" {
+		[37m9  | [33m  bucket = "company-public-data-bucket-123"
+		[37m10 | [33m}
+
+[97mCheck: CKV_AWS_18: "Ensure the S3 bucket has access logging enabled"
+[0m[31m	FAILED for resource: aws_s3_bucket.insecure_bucket
+[0m[35m	File: /main.tf:8-10
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-13-enable-logging
+[0m[0m
+		[37m8  | [33mresource "aws_s3_bucket" "insecure_bucket" {
+		[37m9  | [33m  bucket = "company-public-data-bucket-123"
+		[37m10 | [33m}
+
+[97mCheck: CKV_AWS_21: "Ensure all data stored in the S3 bucket have versioning enabled"
+[0m[31m	FAILED for resource: aws_s3_bucket.insecure_bucket
+[0m[35m	File: /main.tf:8-10
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-16-enable-versioning
+[0m[0m
+		[37m8  | [33mresource "aws_s3_bucket" "insecure_bucket" {
+		[37m9  | [33m  bucket = "company-public-data-bucket-123"
+		[37m10 | [33m}
+
+[97mCheck: CKV2_AWS_41: "Ensure an IAM role is attached to EC2 instance"
+[0m[31m	FAILED for resource: aws_instance.web_server
+[0m[35m	File: /main.tf:57-69
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/ensure-an-iam-role-is-attached-to-ec2-instance
+[0m[0m
+		[37m57 | [33mresource "aws_instance" "web_server" {
+		[37m58 | [33m  ami                         = "ami-0c55b159cbfafe1f0"
+		[37m59 | [33m  instance_type               = "t2.micro"
+		[37m60 |   # DANGEROUS: Automatically assigning a public IP
+		[37m61 | [33m  associate_public_ip_address = true
+		[37m62 | [33m  vpc_security_group_ids      = [aws_security_group.web_sg.id]
+		[37m63 | [33m
+		[37m64 |   # DANGEROUS: Hardcoding secrets into the EC2 User Data script
+		[37m65 | [33m  user_data = <<-EOF
+		[37m66 |               #!/bin/bash
+		[37m67 | [33m              echo "export DB_PASSWORD=super_secret_db_pass" >> /etc/environment
+		[37m68 | [33m              EOF
+		[37m69 | [33m}
+
+[97mCheck: CKV_AWS_144: "Ensure that S3 bucket has cross-region replication enabled"
+[0m[31m	FAILED for resource: aws_s3_bucket.insecure_bucket
+[0m[35m	File: /main.tf:8-10
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-s3-bucket-has-cross-region-replication-enabled
+[0m[0m
+		[37m8  | [33mresource "aws_s3_bucket" "insecure_bucket" {
+		[37m9  | [33m  bucket = "company-public-data-bucket-123"
+		[37m10 | [33m}
+
+[97mCheck: CKV2_AWS_6: "Ensure that S3 bucket has a Public Access block"
+[0m[31m	FAILED for resource: aws_s3_bucket.insecure_bucket
+[0m[35m	File: /main.tf:8-10
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/s3-bucket-should-have-public-access-blocks-defaults-to-false-if-the-public-access-block-is-not-attached
+[0m[0m
+		[37m8  | [33mresource "aws_s3_bucket" "insecure_bucket" {
+		[37m9  | [33m  bucket = "company-public-data-bucket-123"
+		[37m10 | [33m}
+
+[97mCheck: CKV2_AWS_61: "Ensure that an S3 bucket has a lifecycle configuration"
+[0m[31m	FAILED for resource: aws_s3_bucket.insecure_bucket
+[0m[35m	File: /main.tf:8-10
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/bc-aws-2-61
+[0m[0m
+		[37m8  | [33mresource "aws_s3_bucket" "insecure_bucket" {
+		[37m9  | [33m  bucket = "company-public-data-bucket-123"
+		[37m10 | [33m}
+
+[34mdockerfile scan results:
+[0m[36m
+Passed checks: 23, Failed checks: 2, Skipped checks: 0
+
+[0m[97mCheck: CKV_DOCKER_5: "Ensure update instructions are not use alone in the Dockerfile"
+[0m[32m	PASSED for resource: /Dockerfile.
+[0m[35m	File: /Dockerfile:1-15
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-update-instructions-are-not-used-alone-in-the-dockerfile
+[0m[0m[97mCheck: CKV_DOCKER_9: "Ensure that APT isn't used"
+[0m[32m	PASSED for resource: /Dockerfile.
+[0m[35m	File: /Dockerfile:1-15
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-docker-apt-is-not-used
+[0m[0m[97mCheck: CKV_DOCKER_11: "Ensure From Alias are unique for multistage builds."
+[0m[32m	PASSED for resource: /Dockerfile.
+[0m[35m	File: /Dockerfile:1-15
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-docker-from-alias-is-unique-for-multistage-builds
+[0m[0m[97mCheck: CKV_DOCKER_7: "Ensure the base image uses a non latest version tag"
+[0m[32m	PASSED for resource: /Dockerfile.FROM
+[0m[35m	File: /Dockerfile:2-2
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-the-base-image-uses-a-non-latest-version-tag
+[0m[0m[97mCheck: CKV_DOCKER_10: "Ensure that WORKDIR values are absolute paths"
+[0m[32m	PASSED for resource: /Dockerfile.
+[0m[35m	File: /Dockerfile:1-15
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-docker-workdir-values-are-absolute-paths
+[0m[0m[97mCheck: CKV_DOCKER_1: "Ensure port 22 is not exposed"
+[0m[32m	PASSED for resource: /Dockerfile.
+[0m[35m	File: /Dockerfile:1-15
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-port-22-is-not-exposed
+[0m[0m[97mCheck: CKV2_DOCKER_4: "Ensure that certificate validation isn't disabled with the pip '--trusted-host' option"
+[0m[32m	PASSED for resource: /Dockerfile.RUN
+[0m[35m	File: /Dockerfile:9-9
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-docker-pip-secure
+[0m[0m[97mCheck: CKV2_DOCKER_1: "Ensure that sudo isn't used"
+[0m[32m	PASSED for resource: /Dockerfile.RUN
+[0m[35m	File: /Dockerfile:9-9
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-docker-dont-use-sudo
+[0m[0m[97mCheck: CKV2_DOCKER_12: "Ensure that certificate validation isn't disabled for npm via the 'NPM_CONFIG_STRICT_SSL' environmnet variable"
+[0m[32m	PASSED for resource: /Dockerfile.RUN
+[0m[35m	File: /Dockerfile:9-9
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-docker-npm-strict-ssl
+[0m[0m[97mCheck: CKV2_DOCKER_17: "Ensure that 'chpasswd' is not used to set or remove passwords"
+[0m[32m	PASSED for resource: /Dockerfile.RUN
+[0m[35m	File: /Dockerfile:9-9
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/bc-docker-2-17
+[0m[0m[97mCheck: CKV2_DOCKER_16: "Ensure that certificate validation isn't disabled with pip via the 'PIP_TRUSTED_HOST' environment variable"
+[0m[32m	PASSED for resource: /Dockerfile.RUN
+[0m[35m	File: /Dockerfile:9-9
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-docker-pip-trusted-host
+[0m[0m[97mCheck: CKV2_DOCKER_2: "Ensure that certificate validation isn't disabled with curl"
+[0m[32m	PASSED for resource: /Dockerfile.RUN
+[0m[35m	File: /Dockerfile:9-9
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-docker-curl-secure
+[0m[0m[97mCheck: CKV2_DOCKER_8: "Ensure that packages with untrusted or missing signatures are not used by apt-get via the '--allow-unauthenticated' option"
+[0m[32m	PASSED for resource: /Dockerfile.RUN
+[0m[35m	File: /Dockerfile:9-9
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-docker-apt-authenticated
+[0m[0m[97mCheck: CKV2_DOCKER_9: "Ensure that packages with untrusted or missing GPG signatures are not used by dnf, tdnf, or yum via the '--nogpgcheck' option"
+[0m[32m	PASSED for resource: /Dockerfile.RUN
+[0m[35m	File: /Dockerfile:9-9
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-docker-yum-signed
+[0m[0m[97mCheck: CKV2_DOCKER_13: "Ensure that certificate validation isn't disabled for npm or yarn by setting the option strict-ssl to false"
+[0m[32m	PASSED for resource: /Dockerfile.RUN
+[0m[35m	File: /Dockerfile:9-9
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-docker-npm-strict-ssl2
+[0m[0m[97mCheck: CKV2_DOCKER_15: "Ensure that the yum and dnf package managers are not configured to disable SSL certificate validation via the 'sslverify' configuration option"
+[0m[32m	PASSED for resource: /Dockerfile.RUN
+[0m[35m	File: /Dockerfile:9-9
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-docker-yum-ssl
+[0m[0m[97mCheck: CKV2_DOCKER_5: "Ensure that certificate validation isn't disabled with the PYTHONHTTPSVERIFY environmnet variable"
+[0m[32m	PASSED for resource: /Dockerfile.RUN
+[0m[35m	File: /Dockerfile:9-9
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-docker-PYTHONHTTPSVERIFY-secure
+[0m[0m[97mCheck: CKV2_DOCKER_6: "Ensure that certificate validation isn't disabled with the NODE_TLS_REJECT_UNAUTHORIZED environmnet variable"
+[0m[32m	PASSED for resource: /Dockerfile.RUN
+[0m[35m	File: /Dockerfile:9-9
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-docker-node-tls-secure
+[0m[0m[97mCheck: CKV2_DOCKER_14: "Ensure that certificate validation isn't disabled for git by setting the environment variable 'GIT_SSL_NO_VERIFY' to any value"
+[0m[32m	PASSED for resource: /Dockerfile.RUN
+[0m[35m	File: /Dockerfile:9-9
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-docker-git-ssl
+[0m[0m[97mCheck: CKV2_DOCKER_11: "Ensure that the '--force-yes' option is not used, as it disables signature validation and allows packages to be downgraded which can leave the system in a broken or inconsistent state"
+[0m[32m	PASSED for resource: /Dockerfile.RUN
+[0m[35m	File: /Dockerfile:9-9
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-docker-apt-force
+[0m[0m[97mCheck: CKV2_DOCKER_10: "Ensure that packages with untrusted or missing signatures are not used by rpm via the '--nodigest', '--nosignature', '--noverify', or '--nofiledigest' options"
+[0m[32m	PASSED for resource: /Dockerfile.RUN
+[0m[35m	File: /Dockerfile:9-9
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-docker-rpm-signed
+[0m[0m[97mCheck: CKV2_DOCKER_3: "Ensure that certificate validation isn't disabled with wget"
+[0m[32m	PASSED for resource: /Dockerfile.RUN
+[0m[35m	File: /Dockerfile:9-9
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-docker-wget-secure
+[0m[0m[97mCheck: CKV2_DOCKER_7: "Ensure that packages with untrusted or missing signatures are not used by apk via the '--allow-untrusted' option"
+[0m[32m	PASSED for resource: /Dockerfile.RUN
+[0m[35m	File: /Dockerfile:9-9
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-docker-apk-trusted
+[0m[0m[97mCheck: CKV_DOCKER_2: "Ensure that HEALTHCHECK instructions have been added to container images"
+[0m[31m	FAILED for resource: /Dockerfile.
+[0m[35m	File: /Dockerfile:1-15
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-that-healthcheck-instructions-have-been-added-to-container-images
+[0m[0m
+		[37m1  | # Intentionally using an outdated, unsupported base image
+		[37m2  | [33mFROM python:3.6-slim-stretch
+		[37m3  | [33m
+		[37m4  | [33mWORKDIR /app
+		[37m5  | [33m
+		[37m6  | [33mCOPY requirements.txt .
+		[37m7  | [33m
+		[37m8  | # Install the vulnerable dependencies
+		[37m9  | [33mRUN pip install --no-cache-dir -r requirements.txt
+		[37m10 | [33m
+		[37m11 | [33mCOPY app.py .
+		[37m12 | [33m
+		[37m13 | [33mEXPOSE 8080
+		[37m14 | [33m
+		[37m15 | [33mCMD ["python", "app.py"]
+
+[97mCheck: CKV_DOCKER_3: "Ensure that a user for the container has been created"
+[0m[31m	FAILED for resource: /Dockerfile.
+[0m[35m	File: /Dockerfile:1-15
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-that-a-user-for-the-container-has-been-created
+[0m[0m
+		[37m1  | # Intentionally using an outdated, unsupported base image
+		[37m2  | [33mFROM python:3.6-slim-stretch
+		[37m3  | [33m
+		[37m4  | [33mWORKDIR /app
+		[37m5  | [33m
+		[37m6  | [33mCOPY requirements.txt .
+		[37m7  | [33m
+		[37m8  | # Install the vulnerable dependencies
+		[37m9  | [33mRUN pip install --no-cache-dir -r requirements.txt
+		[37m10 | [33m
+		[37m11 | [33mCOPY app.py .
+		[37m12 | [33m
+		[37m13 | [33mEXPOSE 8080
+		[37m14 | [33m
+		[37m15 | [33mCMD ["python", "app.py"]
+
+[34msecrets scan results:
+[0m[36m
+Passed checks: 0, Failed checks: 1, Skipped checks: 0
+
+[0m[97mCheck: CKV_SECRET_6: "Base64 High Entropy String"
+[0m[31m	FAILED for resource: 59dd2816d38bbc0faedcfd6c8194d02e8eb3873d
+[0m[35m	File: /main.tf:67-68
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/secrets-policies/secrets-policy-index/git-secrets-6
+[0m[0m
+		[37m67 | [33m              echo "export DB_PASSWORD=super**********" >> /etc/environment
+
+[34mgithub_actions scan results:
+[0m[36m
+Passed checks: 73, Failed checks: 3, Skipped checks: 0
+
+[0m[97mCheck: CKV_GHA_7: "The build output cannot be affected by user parameters other than the build entry point and the top-level source location. GitHub Actions workflow_dispatch inputs MUST be empty. "
+[0m[32m	PASSED for resource: on(Container Security Scan)
+[0m[35m	File: /.github/workflows/container-scan.yml:4-10
+[0m[97mCheck: CKV_GHA_6: "Found artifact build without evidence of cosign sbom attestation in pipeline"
+[0m[32m	PASSED for resource: jobs
+[0m[35m	File: /.github/workflows/container-scan.yml:10-49
+[0m[97mCheck: CKV_GHA_3: "Suspicious use of curl with secrets"
+[0m[32m	PASSED for resource: jobs(docker-container)
+[0m[35m	File: /.github/workflows/container-scan.yml:11-49
+[0m[97mCheck: CKV_GHA_4: "Suspicious use of netcat with IP address"
+[0m[32m	PASSED for resource: jobs(docker-container)
+[0m[35m	File: /.github/workflows/container-scan.yml:11-49
+[0m[97mCheck: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+[0m[32m	PASSED for resource: jobs(docker-container)
+[0m[35m	File: /.github/workflows/container-scan.yml:11-49
+[0m[97mCheck: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+[0m[32m	PASSED for resource: jobs(docker-container)
+[0m[35m	File: /.github/workflows/container-scan.yml:11-49
+[0m[97mCheck: CKV_GHA_5: "Found artifact build without evidence of cosign sign execution in pipeline"
+[0m[32m	PASSED for resource: jobs
+[0m[35m	File: /.github/workflows/container-scan.yml:10-49
+[0m[97mCheck: CKV_GHA_3: "Suspicious use of curl with secrets"
+[0m[32m	PASSED for resource: jobs(docker-container).steps[1](Checkout Code)
+[0m[35m	File: /.github/workflows/container-scan.yml:15-22
+[0m[97mCheck: CKV_GHA_3: "Suspicious use of curl with secrets"
+[0m[32m	PASSED for resource: jobs(docker-container).steps[2](Build Vulnerable Docker Image)
+[0m[35m	File: /.github/workflows/container-scan.yml:21-28
+[0m[97mCheck: CKV_GHA_3: "Suspicious use of curl with secrets"
+[0m[32m	PASSED for resource: jobs(docker-container).steps[3](Run Trivy Vulnerability Scanner)
+[0m[35m	File: /.github/workflows/container-scan.yml:27-41
+[0m[97mCheck: CKV_GHA_3: "Suspicious use of curl with secrets"
+[0m[32m	PASSED for resource: jobs(docker-container).steps[4](Run Snyk Container Scanner)
+[0m[35m	File: /.github/workflows/container-scan.yml:40-49
+[0m[97mCheck: CKV_GHA_4: "Suspicious use of netcat with IP address"
+[0m[32m	PASSED for resource: jobs(docker-container).steps[1](Checkout Code)
+[0m[35m	File: /.github/workflows/container-scan.yml:15-22
+[0m[97mCheck: CKV_GHA_4: "Suspicious use of netcat with IP address"
+[0m[32m	PASSED for resource: jobs(docker-container).steps[2](Build Vulnerable Docker Image)
+[0m[35m	File: /.github/workflows/container-scan.yml:21-28
+[0m[97mCheck: CKV_GHA_4: "Suspicious use of netcat with IP address"
+[0m[32m	PASSED for resource: jobs(docker-container).steps[3](Run Trivy Vulnerability Scanner)
+[0m[35m	File: /.github/workflows/container-scan.yml:27-41
+[0m[97mCheck: CKV_GHA_4: "Suspicious use of netcat with IP address"
+[0m[32m	PASSED for resource: jobs(docker-container).steps[4](Run Snyk Container Scanner)
+[0m[35m	File: /.github/workflows/container-scan.yml:40-49
+[0m[97mCheck: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+[0m[32m	PASSED for resource: jobs(docker-container).steps[1](Checkout Code)
+[0m[35m	File: /.github/workflows/container-scan.yml:15-22
+[0m[97mCheck: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+[0m[32m	PASSED for resource: jobs(docker-container).steps[2](Build Vulnerable Docker Image)
+[0m[35m	File: /.github/workflows/container-scan.yml:21-28
+[0m[97mCheck: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+[0m[32m	PASSED for resource: jobs(docker-container).steps[3](Run Trivy Vulnerability Scanner)
+[0m[35m	File: /.github/workflows/container-scan.yml:27-41
+[0m[97mCheck: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+[0m[32m	PASSED for resource: jobs(docker-container).steps[4](Run Snyk Container Scanner)
+[0m[35m	File: /.github/workflows/container-scan.yml:40-49
+[0m[97mCheck: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+[0m[32m	PASSED for resource: jobs(docker-container).steps[1](Checkout Code)
+[0m[35m	File: /.github/workflows/container-scan.yml:15-22
+[0m[97mCheck: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+[0m[32m	PASSED for resource: jobs(docker-container).steps[2](Build Vulnerable Docker Image)
+[0m[35m	File: /.github/workflows/container-scan.yml:21-28
+[0m[97mCheck: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+[0m[32m	PASSED for resource: jobs(docker-container).steps[3](Run Trivy Vulnerability Scanner)
+[0m[35m	File: /.github/workflows/container-scan.yml:27-41
+[0m[97mCheck: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+[0m[32m	PASSED for resource: jobs(docker-container).steps[4](Run Snyk Container Scanner)
+[0m[35m	File: /.github/workflows/container-scan.yml:40-49
+[0m[97mCheck: CKV_GHA_7: "The build output cannot be affected by user parameters other than the build entry point and the top-level source location. GitHub Actions workflow_dispatch inputs MUST be empty. "
+[0m[32m	PASSED for resource: on(IaC Security Scan)
+[0m[35m	File: /.github/workflows/iac-scan.yml:4-10
+[0m[97mCheck: CKV_GHA_6: "Found artifact build without evidence of cosign sbom attestation in pipeline"
+[0m[32m	PASSED for resource: jobs
+[0m[35m	File: /.github/workflows/iac-scan.yml:10-52
+[0m[97mCheck: CKV_GHA_3: "Suspicious use of curl with secrets"
+[0m[32m	PASSED for resource: jobs(terraform-iac)
+[0m[35m	File: /.github/workflows/iac-scan.yml:11-52
+[0m[97mCheck: CKV_GHA_4: "Suspicious use of netcat with IP address"
+[0m[32m	PASSED for resource: jobs(terraform-iac)
+[0m[35m	File: /.github/workflows/iac-scan.yml:11-52
+[0m[97mCheck: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+[0m[32m	PASSED for resource: jobs(terraform-iac)
+[0m[35m	File: /.github/workflows/iac-scan.yml:11-52
+[0m[97mCheck: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+[0m[32m	PASSED for resource: jobs(terraform-iac)
+[0m[35m	File: /.github/workflows/iac-scan.yml:11-52
+[0m[97mCheck: CKV_GHA_5: "Found artifact build without evidence of cosign sign execution in pipeline"
+[0m[32m	PASSED for resource: jobs
+[0m[35m	File: /.github/workflows/iac-scan.yml:10-52
+[0m[97mCheck: CKV_GHA_3: "Suspicious use of curl with secrets"
+[0m[32m	PASSED for resource: jobs(terraform-iac).steps[1](Checkout Code)
+[0m[35m	File: /.github/workflows/iac-scan.yml:15-22
+[0m[97mCheck: CKV_GHA_3: "Suspicious use of curl with secrets"
+[0m[32m	PASSED for resource: jobs(terraform-iac).steps[2](Run Checkov IaC Scan)
+[0m[35m	File: /.github/workflows/iac-scan.yml:21-32
+[0m[97mCheck: CKV_GHA_3: "Suspicious use of curl with secrets"
+[0m[32m	PASSED for resource: jobs(terraform-iac).steps[3](Run Trivy IaC Scan)
+[0m[35m	File: /.github/workflows/iac-scan.yml:31-44
+[0m[97mCheck: CKV_GHA_3: "Suspicious use of curl with secrets"
+[0m[32m	PASSED for resource: jobs(terraform-iac).steps[4](Run Snyk IaC Scan)
+[0m[35m	File: /.github/workflows/iac-scan.yml:43-52
+[0m[97mCheck: CKV_GHA_4: "Suspicious use of netcat with IP address"
+[0m[32m	PASSED for resource: jobs(terraform-iac).steps[1](Checkout Code)
+[0m[35m	File: /.github/workflows/iac-scan.yml:15-22
+[0m[97mCheck: CKV_GHA_4: "Suspicious use of netcat with IP address"
+[0m[32m	PASSED for resource: jobs(terraform-iac).steps[2](Run Checkov IaC Scan)
+[0m[35m	File: /.github/workflows/iac-scan.yml:21-32
+[0m[97mCheck: CKV_GHA_4: "Suspicious use of netcat with IP address"
+[0m[32m	PASSED for resource: jobs(terraform-iac).steps[3](Run Trivy IaC Scan)
+[0m[35m	File: /.github/workflows/iac-scan.yml:31-44
+[0m[97mCheck: CKV_GHA_4: "Suspicious use of netcat with IP address"
+[0m[32m	PASSED for resource: jobs(terraform-iac).steps[4](Run Snyk IaC Scan)
+[0m[35m	File: /.github/workflows/iac-scan.yml:43-52
+[0m[97mCheck: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+[0m[32m	PASSED for resource: jobs(terraform-iac).steps[1](Checkout Code)
+[0m[35m	File: /.github/workflows/iac-scan.yml:15-22
+[0m[97mCheck: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+[0m[32m	PASSED for resource: jobs(terraform-iac).steps[2](Run Checkov IaC Scan)
+[0m[35m	File: /.github/workflows/iac-scan.yml:21-32
+[0m[97mCheck: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+[0m[32m	PASSED for resource: jobs(terraform-iac).steps[3](Run Trivy IaC Scan)
+[0m[35m	File: /.github/workflows/iac-scan.yml:31-44
+[0m[97mCheck: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+[0m[32m	PASSED for resource: jobs(terraform-iac).steps[4](Run Snyk IaC Scan)
+[0m[35m	File: /.github/workflows/iac-scan.yml:43-52
+[0m[97mCheck: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+[0m[32m	PASSED for resource: jobs(terraform-iac).steps[1](Checkout Code)
+[0m[35m	File: /.github/workflows/iac-scan.yml:15-22
+[0m[97mCheck: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+[0m[32m	PASSED for resource: jobs(terraform-iac).steps[2](Run Checkov IaC Scan)
+[0m[35m	File: /.github/workflows/iac-scan.yml:21-32
+[0m[97mCheck: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+[0m[32m	PASSED for resource: jobs(terraform-iac).steps[3](Run Trivy IaC Scan)
+[0m[35m	File: /.github/workflows/iac-scan.yml:31-44
+[0m[97mCheck: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+[0m[32m	PASSED for resource: jobs(terraform-iac).steps[4](Run Snyk IaC Scan)
+[0m[35m	File: /.github/workflows/iac-scan.yml:43-52
+[0m[97mCheck: CKV_GHA_7: "The build output cannot be affected by user parameters other than the build entry point and the top-level source location. GitHub Actions workflow_dispatch inputs MUST be empty. "
+[0m[32m	PASSED for resource: on(SAST Security Scan)
+[0m[35m	File: /.github/workflows/sast-scan.yml:4-10
+[0m[97mCheck: CKV_GHA_6: "Found artifact build without evidence of cosign sbom attestation in pipeline"
+[0m[32m	PASSED for resource: jobs
+[0m[35m	File: /.github/workflows/sast-scan.yml:10-38
+[0m[97mCheck: CKV_GHA_3: "Suspicious use of curl with secrets"
+[0m[32m	PASSED for resource: jobs(python-sast)
+[0m[35m	File: /.github/workflows/sast-scan.yml:11-38
+[0m[97mCheck: CKV_GHA_4: "Suspicious use of netcat with IP address"
+[0m[32m	PASSED for resource: jobs(python-sast)
+[0m[35m	File: /.github/workflows/sast-scan.yml:11-38
+[0m[97mCheck: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+[0m[32m	PASSED for resource: jobs(python-sast)
+[0m[35m	File: /.github/workflows/sast-scan.yml:11-38
+[0m[97mCheck: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+[0m[32m	PASSED for resource: jobs(python-sast)
+[0m[35m	File: /.github/workflows/sast-scan.yml:11-38
+[0m[97mCheck: CKV_GHA_5: "Found artifact build without evidence of cosign sign execution in pipeline"
+[0m[32m	PASSED for resource: jobs
+[0m[35m	File: /.github/workflows/sast-scan.yml:10-38
+[0m[97mCheck: CKV_GHA_3: "Suspicious use of curl with secrets"
+[0m[32m	PASSED for resource: jobs(python-sast).steps[1](Checkout Code)
+[0m[35m	File: /.github/workflows/sast-scan.yml:15-22
+[0m[97mCheck: CKV_GHA_3: "Suspicious use of curl with secrets"
+[0m[32m	PASSED for resource: jobs(python-sast).steps[2](Setup Snyk CLI)
+[0m[35m	File: /.github/workflows/sast-scan.yml:21-25
+[0m[97mCheck: CKV_GHA_3: "Suspicious use of curl with secrets"
+[0m[32m	PASSED for resource: jobs(python-sast).steps[3](Run Snyk Code SAST Scan)
+[0m[35m	File: /.github/workflows/sast-scan.yml:24-33
+[0m[97mCheck: CKV_GHA_3: "Suspicious use of curl with secrets"
+[0m[32m	PASSED for resource: jobs(python-sast).steps[4](Install Bandit)
+[0m[35m	File: /.github/workflows/sast-scan.yml:32-36
+[0m[97mCheck: CKV_GHA_3: "Suspicious use of curl with secrets"
+[0m[32m	PASSED for resource: jobs(python-sast).steps[5](Run Bandit SAST Scan)
+[0m[35m	File: /.github/workflows/sast-scan.yml:35-38
+[0m[97mCheck: CKV_GHA_4: "Suspicious use of netcat with IP address"
+[0m[32m	PASSED for resource: jobs(python-sast).steps[1](Checkout Code)
+[0m[35m	File: /.github/workflows/sast-scan.yml:15-22
+[0m[97mCheck: CKV_GHA_4: "Suspicious use of netcat with IP address"
+[0m[32m	PASSED for resource: jobs(python-sast).steps[2](Setup Snyk CLI)
+[0m[35m	File: /.github/workflows/sast-scan.yml:21-25
+[0m[97mCheck: CKV_GHA_4: "Suspicious use of netcat with IP address"
+[0m[32m	PASSED for resource: jobs(python-sast).steps[3](Run Snyk Code SAST Scan)
+[0m[35m	File: /.github/workflows/sast-scan.yml:24-33
+[0m[97mCheck: CKV_GHA_4: "Suspicious use of netcat with IP address"
+[0m[32m	PASSED for resource: jobs(python-sast).steps[4](Install Bandit)
+[0m[35m	File: /.github/workflows/sast-scan.yml:32-36
+[0m[97mCheck: CKV_GHA_4: "Suspicious use of netcat with IP address"
+[0m[32m	PASSED for resource: jobs(python-sast).steps[5](Run Bandit SAST Scan)
+[0m[35m	File: /.github/workflows/sast-scan.yml:35-38
+[0m[97mCheck: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+[0m[32m	PASSED for resource: jobs(python-sast).steps[1](Checkout Code)
+[0m[35m	File: /.github/workflows/sast-scan.yml:15-22
+[0m[97mCheck: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+[0m[32m	PASSED for resource: jobs(python-sast).steps[2](Setup Snyk CLI)
+[0m[35m	File: /.github/workflows/sast-scan.yml:21-25
+[0m[97mCheck: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+[0m[32m	PASSED for resource: jobs(python-sast).steps[3](Run Snyk Code SAST Scan)
+[0m[35m	File: /.github/workflows/sast-scan.yml:24-33
+[0m[97mCheck: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+[0m[32m	PASSED for resource: jobs(python-sast).steps[4](Install Bandit)
+[0m[35m	File: /.github/workflows/sast-scan.yml:32-36
+[0m[97mCheck: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+[0m[32m	PASSED for resource: jobs(python-sast).steps[5](Run Bandit SAST Scan)
+[0m[35m	File: /.github/workflows/sast-scan.yml:35-38
+[0m[97mCheck: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+[0m[32m	PASSED for resource: jobs(python-sast).steps[1](Checkout Code)
+[0m[35m	File: /.github/workflows/sast-scan.yml:15-22
+[0m[97mCheck: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+[0m[32m	PASSED for resource: jobs(python-sast).steps[2](Setup Snyk CLI)
+[0m[35m	File: /.github/workflows/sast-scan.yml:21-25
+[0m[97mCheck: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+[0m[32m	PASSED for resource: jobs(python-sast).steps[3](Run Snyk Code SAST Scan)
+[0m[35m	File: /.github/workflows/sast-scan.yml:24-33
+[0m[97mCheck: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+[0m[32m	PASSED for resource: jobs(python-sast).steps[4](Install Bandit)
+[0m[35m	File: /.github/workflows/sast-scan.yml:32-36
+[0m[97mCheck: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+[0m[32m	PASSED for resource: jobs(python-sast).steps[5](Run Bandit SAST Scan)
+[0m[35m	File: /.github/workflows/sast-scan.yml:35-38
+[0m[97mCheck: CKV2_GHA_1: "Ensure top-level permissions are not set to write-all"
+[0m[31m	FAILED for resource: on(Container Security Scan)
+[0m[35m	File: /.github/workflows/container-scan.yml:0-1
+[0m[97mCheck: CKV2_GHA_1: "Ensure top-level permissions are not set to write-all"
+[0m[31m	FAILED for resource: on(IaC Security Scan)
+[0m[35m	File: /.github/workflows/iac-scan.yml:0-1
+[0m[97mCheck: CKV2_GHA_1: "Ensure top-level permissions are not set to write-all"
+[0m[31m	FAILED for resource: on(SAST Security Scan)
+[0m[35m	File: /.github/workflows/sast-scan.yml:0-1
+[0m[0m[0m[0m
+[0m[0m[0m[ dockerfile framework ]:   0% 0/1 [00:00<?, ?it/s][0m[0m[0m[ dockerfile framework ]:   0% 0/1 [00:00<?, ?it/s, Current File Scanned=../../../../Dockerfile][0m[0m[0m[0m[0m[0m[ dockerfile framework ]: 100% 1/1 [00:00<00:00, 225.55it/s, Current File Scanned=../../../../Dockerfile][0m[0m[0m
+[0m[0m[ secrets framework ]:   0% 0/2 [00:00<?, ?it/s][0m[0m[0m[ terraform framework ]:   0% 0/1 [00:00<?, ?it/s][0m[0m[0m[ terraform framework ]:   0% 0/1 [00:00<?, ?it/s, Current File Scanned=main.tf][0m[0m[0m[0m[0m[0m[ terraform framework ]: 100% 1/1 [00:00<00:00, 30.11it/s, Current File Scanned=main.tf][0m[0m[0m
+[0m[0m[0m[ secrets framework ]:   0% 0/2 [00:00<?, ?it/s, Current File Scanned=./Dockerfile][0m[0m[0m[ secrets framework ]:  50% 1/2 [00:00<00:00,  4.87it/s, Current File Scanned=./Dockerfile][0m[0m[0m[ secrets framework ]:  50% 1/2 [00:00<00:00,  4.87it/s, Current File Scanned=./main.tf]   [0m[0m[0m[0m[0m[0m[ secrets framework ]: 100% 2/2 [00:00<00:00,  9.17it/s, Current File Scanned=./main.tf][0m[0m[0m
+[0m[0m[0m[0m[ github_actions framework ]:   0% 0/3 [00:00<?, ?it/s][0m[0m[0m[ github_actions framework ]:   0% 0/3 [00:00<?, ?it/s, Current File Scanned=.github/workflows/container-scan.yml][0m[0m[0m[ github_actions framework ]:  33% 1/3 [00:00<00:00, 89.72it/s, Current File Scanned=.github/workflows/iac-scan.yml][0m[0m[0m[ github_actions framework ]:  67% 2/3 [00:00<00:00, 119.62it/s, Current File Scanned=.github/workflows/sast-scan.yml][0m[0m[0m[0m[0m[0m[ github_actions framework ]: 100% 3/3 [00:00<00:00, 135.85it/s, Current File Scanned=.github/workflows/sast-scan.yml][0m[0m[0m
+[0m[0m[0m
+
+       _               _              
+   ___| |__   ___  ___| | _______   __
+  / __| '_ \ / _ \/ __| |/ / _ \ \ / /
+ | (__| | | |  __/ (__|   < (_) \ V / 
+  \___|_| |_|\___|\___|_|\_\___/ \_/  
+                                      
+By Prisma Cloud | version: 3.2.43 
+Update available [30m3.2.43[0m -> [32m3.2.507[0m
+Run [35mpip3 install -U checkov[0m to update 
+
+[0m[0m[0m
+[0m[0m[0m[34mterraform scan results:
+[0m[36m
+Passed checks: 18, Failed checks: 40, Skipped checks: 0
+
+[0m[97mCheck: CKV_AWS_93: "Ensure S3 bucket policy does not lockout all but root user. (Prevent lockouts needing root account fixes)"
+[0m[32m	PASSED for resource: aws_s3_bucket.insecure_bucket
+[0m[35m	File: /main.tf:8-10
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/bc-aws-s3-24
+[0m[0m[97mCheck: CKV_AWS_277: "Ensure no security groups allow ingress from 0.0.0.0:0 to port -1"
+[0m[32m	PASSED for resource: aws_security_group.web_sg
+[0m[35m	File: /main.tf:25-52
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-aws-security-group-does-not-allow-all-traffic-on-all-ports
+[0m[0m[97mCheck: CKV_AWS_25: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 3389"
+[0m[32m	PASSED for resource: aws_security_group.web_sg
+[0m[35m	File: /main.tf:25-52
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-2
+[0m[0m[97mCheck: CKV_AWS_46: "Ensure no hard-coded secrets exist in EC2 user data"
+[0m[32m	PASSED for resource: aws_instance.web_server
+[0m[35m	File: /main.tf:57-69
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/secrets-policies/bc-aws-secrets-1
+[0m[0m[97mCheck: CKV_AWS_41: "Ensure no hard coded AWS access key and secret key exists in provider"
+[0m[32m	PASSED for resource: aws.default
+[0m[35m	File: /main.tf:1-3
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/secrets-policies/bc-aws-secrets-5
+[0m[0m[97mCheck: CKV_AWS_57: "S3 Bucket has an ACL defined which allows public WRITE access."
+[0m[32m	PASSED for resource: aws_s3_bucket.insecure_bucket
+[0m[35m	File: /main.tf:8-10
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-2-acl-write-permissions-everyone
+[0m[0m[97mCheck: CKV2_AWS_5: "Ensure that Security Groups are attached to another resource"
+[0m[32m	PASSED for resource: aws_security_group.web_sg
+[0m[35m	File: /main.tf:25-52
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-that-security-groups-are-attached-to-ec2-instances-or-elastic-network-interfaces-enis
+[0m[0m[97mCheck: CKV_AWS_19: "Ensure all data stored in the S3 bucket is securely encrypted at rest"
+[0m[32m	PASSED for resource: aws_s3_bucket.insecure_bucket
+[0m[35m	File: /main.tf:8-10
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-14-data-encrypted-at-rest
+[0m[0m[97mCheck: CKV_AWS_20: "S3 Bucket has an ACL defined which allows public READ access."
+[0m[32m	PASSED for resource: aws_s3_bucket.insecure_bucket
+[0m[35m	File: /main.tf:8-10
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-1-acl-read-permissions-everyone
+[0m[0m[97mCheck: CKV_AWS_93: "Ensure S3 bucket policy does not lockout all but root user. (Prevent lockouts needing root account fixes)"
+[0m[32m	PASSED for resource: aws_s3_bucket.insecure_bucket
+[0m[35m	File: /main.tf:8-10
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/bc-aws-s3-24
+[0m[0m[97mCheck: CKV_AWS_277: "Ensure no security groups allow ingress from 0.0.0.0:0 to port -1"
+[0m[32m	PASSED for resource: aws_security_group.web_sg
+[0m[35m	File: /main.tf:25-52
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-aws-security-group-does-not-allow-all-traffic-on-all-ports
+[0m[0m[97mCheck: CKV_AWS_25: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 3389"
+[0m[32m	PASSED for resource: aws_security_group.web_sg
+[0m[35m	File: /main.tf:25-52
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-2
+[0m[0m[97mCheck: CKV_AWS_46: "Ensure no hard-coded secrets exist in EC2 user data"
+[0m[32m	PASSED for resource: aws_instance.web_server
+[0m[35m	File: /main.tf:57-69
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/secrets-policies/bc-aws-secrets-1
+[0m[0m[97mCheck: CKV_AWS_41: "Ensure no hard coded AWS access key and secret key exists in provider"
+[0m[32m	PASSED for resource: aws.default
+[0m[35m	File: /main.tf:1-3
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/secrets-policies/bc-aws-secrets-5
+[0m[0m[97mCheck: CKV_AWS_20: "S3 Bucket has an ACL defined which allows public READ access."
+[0m[32m	PASSED for resource: aws_s3_bucket.insecure_bucket
+[0m[35m	File: /main.tf:8-10
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-1-acl-read-permissions-everyone
+[0m[0m[97mCheck: CKV2_AWS_5: "Ensure that Security Groups are attached to another resource"
+[0m[32m	PASSED for resource: aws_security_group.web_sg
+[0m[35m	File: /main.tf:25-52
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-that-security-groups-are-attached-to-ec2-instances-or-elastic-network-interfaces-enis
+[0m[0m[97mCheck: CKV_AWS_19: "Ensure all data stored in the S3 bucket is securely encrypted at rest"
+[0m[32m	PASSED for resource: aws_s3_bucket.insecure_bucket
+[0m[35m	File: /main.tf:8-10
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-14-data-encrypted-at-rest
+[0m[0m[97mCheck: CKV_AWS_57: "S3 Bucket has an ACL defined which allows public WRITE access."
+[0m[32m	PASSED for resource: aws_s3_bucket.insecure_bucket
+[0m[35m	File: /main.tf:8-10
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-2-acl-write-permissions-everyone
+[0m[0m[97mCheck: CKV_AWS_53: "Ensure S3 bucket has block public ACLS enabled"
+[0m[31m	FAILED for resource: aws_s3_bucket_public_access_block.insecure_bucket_access
+[0m[35m	File: /main.tf:12-20
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/bc-aws-s3-19
+[0m[0m
+		[37m12 | [33mresource "aws_s3_bucket_public_access_block" "insecure_bucket_access" {
+		[37m13 | [33m  bucket = aws_s3_bucket.insecure_bucket.id
+		[37m14 | [33m
+		[37m15 |   # DANGEROUS: Explicitly disabling public access blocks
+		[37m16 | [33m  block_public_acls       = false
+		[37m17 | [33m  block_public_policy     = false
+		[37m18 | [33m  ignore_public_acls      = false
+		[37m19 | [33m  restrict_public_buckets = false
+		[37m20 | [33m}
+
+[97mCheck: CKV_AWS_54: "Ensure S3 bucket has block public policy enabled"
+[0m[31m	FAILED for resource: aws_s3_bucket_public_access_block.insecure_bucket_access
+[0m[35m	File: /main.tf:12-20
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/bc-aws-s3-20
+[0m[0m
+		[37m12 | [33mresource "aws_s3_bucket_public_access_block" "insecure_bucket_access" {
+		[37m13 | [33m  bucket = aws_s3_bucket.insecure_bucket.id
+		[37m14 | [33m
+		[37m15 |   # DANGEROUS: Explicitly disabling public access blocks
+		[37m16 | [33m  block_public_acls       = false
+		[37m17 | [33m  block_public_policy     = false
+		[37m18 | [33m  ignore_public_acls      = false
+		[37m19 | [33m  restrict_public_buckets = false
+		[37m20 | [33m}
+
+[97mCheck: CKV_AWS_55: "Ensure S3 bucket has ignore public ACLs enabled"
+[0m[31m	FAILED for resource: aws_s3_bucket_public_access_block.insecure_bucket_access
+[0m[35m	File: /main.tf:12-20
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/bc-aws-s3-21
+[0m[0m
+		[37m12 | [33mresource "aws_s3_bucket_public_access_block" "insecure_bucket_access" {
+		[37m13 | [33m  bucket = aws_s3_bucket.insecure_bucket.id
+		[37m14 | [33m
+		[37m15 |   # DANGEROUS: Explicitly disabling public access blocks
+		[37m16 | [33m  block_public_acls       = false
+		[37m17 | [33m  block_public_policy     = false
+		[37m18 | [33m  ignore_public_acls      = false
+		[37m19 | [33m  restrict_public_buckets = false
+		[37m20 | [33m}
+
+[97mCheck: CKV_AWS_56: "Ensure S3 bucket has 'restrict_public_buckets' enabled"
+[0m[31m	FAILED for resource: aws_s3_bucket_public_access_block.insecure_bucket_access
+[0m[35m	File: /main.tf:12-20
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/bc-aws-s3-22
+[0m[0m
+		[37m12 | [33mresource "aws_s3_bucket_public_access_block" "insecure_bucket_access" {
+		[37m13 | [33m  bucket = aws_s3_bucket.insecure_bucket.id
+		[37m14 | [33m
+		[37m15 |   # DANGEROUS: Explicitly disabling public access blocks
+		[37m16 | [33m  block_public_acls       = false
+		[37m17 | [33m  block_public_policy     = false
+		[37m18 | [33m  ignore_public_acls      = false
+		[37m19 | [33m  restrict_public_buckets = false
+		[37m20 | [33m}
+
+[97mCheck: CKV_AWS_23: "Ensure every security groups rule has a description"
+[0m[31m	FAILED for resource: aws_security_group.web_sg
+[0m[35m	File: /main.tf:25-52
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-31
+[0m[0m
+		[37m25 | [33mresource "aws_security_group" "web_sg" {
+		[37m26 | [33m  name        = "allow_all_traffic"
+		[37m27 | [33m  description = "Allow all inbound traffic"
+		[37m28 | [33m
+		[37m29 | [33m  ingress {
+		[37m30 | [33m    description = "SSH from anywhere"
+		[37m31 | [33m    from_port   = 22
+		[37m32 | [33m    to_port     = 22
+		[37m33 | [33m    protocol    = "tcp"
+		[37m34 |     # DANGEROUS: Allowing SSH access from 0.0.0.0/0
+		[37m35 | [33m    cidr_blocks = ["0.0.0.0/0"]
+		[37m36 | [33m  }
+		[37m37 | [33m
+		[37m38 | [33m  ingress {
+		[37m39 | [33m    description = "HTTP from anywhere"
+		[37m40 | [33m    from_port   = 80
+		[37m41 | [33m    to_port     = 80
+		[37m42 | [33m    protocol    = "tcp"
+		[37m43 | [33m    cidr_blocks = ["0.0.0.0/0"]
+		[37m44 | [33m  }
+		[37m45 | [33m
+		[37m46 | [33m  egress {
+		[37m47 | [33m    from_port   = 0
+		[37m48 | [33m    to_port     = 0
+		[37m49 | [33m    protocol    = "-1"
+		[37m50 | [33m    cidr_blocks = ["0.0.0.0/0"]
+		[37m51 | [33m  }
+		[37m52 | [33m}
+
+[97mCheck: CKV_AWS_24: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 22"
+[0m[31m	FAILED for resource: aws_security_group.web_sg
+[0m[35m	File: /main.tf:25-52
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-1-port-security
+[0m[0m
+		[37m25 | [33mresource "aws_security_group" "web_sg" {
+		[37m26 | [33m  name        = "allow_all_traffic"
+		[37m27 | [33m  description = "Allow all inbound traffic"
+		[37m28 | [33m
+		[37m29 | [33m  ingress {
+		[37m30 | [33m    description = "SSH from anywhere"
+		[37m31 | [33m    from_port   = 22
+		[37m32 | [33m    to_port     = 22
+		[37m33 | [33m    protocol    = "tcp"
+		[37m34 |     # DANGEROUS: Allowing SSH access from 0.0.0.0/0
+		[37m35 | [33m    cidr_blocks = ["0.0.0.0/0"]
+		[37m36 | [33m  }
+		[37m37 | [33m
+		[37m38 | [33m  ingress {
+		[37m39 | [33m    description = "HTTP from anywhere"
+		[37m40 | [33m    from_port   = 80
+		[37m41 | [33m    to_port     = 80
+		[37m42 | [33m    protocol    = "tcp"
+		[37m43 | [33m    cidr_blocks = ["0.0.0.0/0"]
+		[37m44 | [33m  }
+		[37m45 | [33m
+		[37m46 | [33m  egress {
+		[37m47 | [33m    from_port   = 0
+		[37m48 | [33m    to_port     = 0
+		[37m49 | [33m    protocol    = "-1"
+		[37m50 | [33m    cidr_blocks = ["0.0.0.0/0"]
+		[37m51 | [33m  }
+		[37m52 | [33m}
+
+[97mCheck: CKV_AWS_260: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 80"
+[0m[31m	FAILED for resource: aws_security_group.web_sg
+[0m[35m	File: /main.tf:25-52
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-aws-security-groups-do-not-allow-ingress-from-00000-to-port-80
+[0m[0m
+		[37m25 | [33mresource "aws_security_group" "web_sg" {
+		[37m26 | [33m  name        = "allow_all_traffic"
+		[37m27 | [33m  description = "Allow all inbound traffic"
+		[37m28 | [33m
+		[37m29 | [33m  ingress {
+		[37m30 | [33m    description = "SSH from anywhere"
+		[37m31 | [33m    from_port   = 22
+		[37m32 | [33m    to_port     = 22
+		[37m33 | [33m    protocol    = "tcp"
+		[37m34 |     # DANGEROUS: Allowing SSH access from 0.0.0.0/0
+		[37m35 | [33m    cidr_blocks = ["0.0.0.0/0"]
+		[37m36 | [33m  }
+		[37m37 | [33m
+		[37m38 | [33m  ingress {
+		[37m39 | [33m    description = "HTTP from anywhere"
+		[37m40 | [33m    from_port   = 80
+		[37m41 | [33m    to_port     = 80
+		[37m42 | [33m    protocol    = "tcp"
+		[37m43 | [33m    cidr_blocks = ["0.0.0.0/0"]
+		[37m44 | [33m  }
+		[37m45 | [33m
+		[37m46 | [33m  egress {
+		[37m47 | [33m    from_port   = 0
+		[37m48 | [33m    to_port     = 0
+		[37m49 | [33m    protocol    = "-1"
+		[37m50 | [33m    cidr_blocks = ["0.0.0.0/0"]
+		[37m51 | [33m  }
+		[37m52 | [33m}
+
+[97mCheck: CKV_AWS_126: "Ensure that detailed monitoring is enabled for EC2 instances"
+[0m[31m	FAILED for resource: aws_instance.web_server
+[0m[35m	File: /main.tf:57-69
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/ensure-that-detailed-monitoring-is-enabled-for-ec2-instances
+[0m[0m
+		[37m57 | [33mresource "aws_instance" "web_server" {
+		[37m58 | [33m  ami                         = "ami-0c55b159cbfafe1f0"
+		[37m59 | [33m  instance_type               = "t2.micro"
+		[37m60 |   # DANGEROUS: Automatically assigning a public IP
+		[37m61 | [33m  associate_public_ip_address = true
+		[37m62 | [33m  vpc_security_group_ids      = [aws_security_group.web_sg.id]
+		[37m63 | [33m
+		[37m64 |   # DANGEROUS: Hardcoding secrets into the EC2 User Data script
+		[37m65 | [33m  user_data = <<-EOF
+		[37m66 |               #!/bin/bash
+		[37m67 | [33m              echo "export DB_PASSWORD=super_secret_db_pass" >> /etc/environment
+		[37m68 | [33m              EOF
+		[37m69 | [33m}
+
+[97mCheck: CKV_AWS_135: "Ensure that EC2 is EBS optimized"
+[0m[31m	FAILED for resource: aws_instance.web_server
+[0m[35m	File: /main.tf:57-69
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-ec2-is-ebs-optimized
+[0m[0m
+		[37m57 | [33mresource "aws_instance" "web_server" {
+		[37m58 | [33m  ami                         = "ami-0c55b159cbfafe1f0"
+		[37m59 | [33m  instance_type               = "t2.micro"
+		[37m60 |   # DANGEROUS: Automatically assigning a public IP
+		[37m61 | [33m  associate_public_ip_address = true
+		[37m62 | [33m  vpc_security_group_ids      = [aws_security_group.web_sg.id]
+		[37m63 | [33m
+		[37m64 |   # DANGEROUS: Hardcoding secrets into the EC2 User Data script
+		[37m65 | [33m  user_data = <<-EOF
+		[37m66 |               #!/bin/bash
+		[37m67 | [33m              echo "export DB_PASSWORD=super_secret_db_pass" >> /etc/environment
+		[37m68 | [33m              EOF
+		[37m69 | [33m}
+
+[97mCheck: CKV_AWS_79: "Ensure Instance Metadata Service Version 1 is not enabled"
+[0m[31m	FAILED for resource: aws_instance.web_server
+[0m[35m	File: /main.tf:57-69
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/bc-aws-general-31
+[0m[0m
+		[37m57 | [33mresource "aws_instance" "web_server" {
+		[37m58 | [33m  ami                         = "ami-0c55b159cbfafe1f0"
+		[37m59 | [33m  instance_type               = "t2.micro"
+		[37m60 |   # DANGEROUS: Automatically assigning a public IP
+		[37m61 | [33m  associate_public_ip_address = true
+		[37m62 | [33m  vpc_security_group_ids      = [aws_security_group.web_sg.id]
+		[37m63 | [33m
+		[37m64 |   # DANGEROUS: Hardcoding secrets into the EC2 User Data script
+		[37m65 | [33m  user_data = <<-EOF
+		[37m66 |               #!/bin/bash
+		[37m67 | [33m              echo "export DB_PASSWORD=super_secret_db_pass" >> /etc/environment
+		[37m68 | [33m              EOF
+		[37m69 | [33m}
+
+[97mCheck: CKV_AWS_8: "Ensure all data stored in the Launch configuration or instance Elastic Blocks Store is securely encrypted"
+[0m[31m	FAILED for resource: aws_instance.web_server
+[0m[35m	File: /main.tf:57-69
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/general-13
+[0m[0m
+		[37m57 | [33mresource "aws_instance" "web_server" {
+		[37m58 | [33m  ami                         = "ami-0c55b159cbfafe1f0"
+		[37m59 | [33m  instance_type               = "t2.micro"
+		[37m60 |   # DANGEROUS: Automatically assigning a public IP
+		[37m61 | [33m  associate_public_ip_address = true
+		[37m62 | [33m  vpc_security_group_ids      = [aws_security_group.web_sg.id]
+		[37m63 | [33m
+		[37m64 |   # DANGEROUS: Hardcoding secrets into the EC2 User Data script
+		[37m65 | [33m  user_data = <<-EOF
+		[37m66 |               #!/bin/bash
+		[37m67 | [33m              echo "export DB_PASSWORD=super_secret_db_pass" >> /etc/environment
+		[37m68 | [33m              EOF
+		[37m69 | [33m}
+
+[97mCheck: CKV_AWS_88: "EC2 instance should not have public IP."
+[0m[31m	FAILED for resource: aws_instance.web_server
+[0m[35m	File: /main.tf:57-69
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/public-policies/public-12
+[0m[0m
+		[37m57 | [33mresource "aws_instance" "web_server" {
+		[37m58 | [33m  ami                         = "ami-0c55b159cbfafe1f0"
+		[37m59 | [33m  instance_type               = "t2.micro"
+		[37m60 |   # DANGEROUS: Automatically assigning a public IP
+		[37m61 | [33m  associate_public_ip_address = true
+		[37m62 | [33m  vpc_security_group_ids      = [aws_security_group.web_sg.id]
+		[37m63 | [33m
+		[37m64 |   # DANGEROUS: Hardcoding secrets into the EC2 User Data script
+		[37m65 | [33m  user_data = <<-EOF
+		[37m66 |               #!/bin/bash
+		[37m67 | [33m              echo "export DB_PASSWORD=super_secret_db_pass" >> /etc/environment
+		[37m68 | [33m              EOF
+		[37m69 | [33m}
+
+[97mCheck: CKV2_AWS_62: "Ensure S3 buckets should have event notifications enabled"
+[0m[31m	FAILED for resource: aws_s3_bucket.insecure_bucket
+[0m[35m	File: /main.tf:8-10
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/bc-aws-2-62
+[0m[0m
+		[37m8  | [33mresource "aws_s3_bucket" "insecure_bucket" {
+		[37m9  | [33m  bucket = "company-public-data-bucket-123"
+		[37m10 | [33m}
+
+[97mCheck: CKV_AWS_145: "Ensure that S3 buckets are encrypted with KMS by default"
+[0m[31m	FAILED for resource: aws_s3_bucket.insecure_bucket
+[0m[35m	File: /main.tf:8-10
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-s3-buckets-are-encrypted-with-kms-by-default
+[0m[0m
+		[37m8  | [33mresource "aws_s3_bucket" "insecure_bucket" {
+		[37m9  | [33m  bucket = "company-public-data-bucket-123"
+		[37m10 | [33m}
+
+[97mCheck: CKV_AWS_18: "Ensure the S3 bucket has access logging enabled"
+[0m[31m	FAILED for resource: aws_s3_bucket.insecure_bucket
+[0m[35m	File: /main.tf:8-10
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-13-enable-logging
+[0m[0m
+		[37m8  | [33mresource "aws_s3_bucket" "insecure_bucket" {
+		[37m9  | [33m  bucket = "company-public-data-bucket-123"
+		[37m10 | [33m}
+
+[97mCheck: CKV_AWS_21: "Ensure all data stored in the S3 bucket have versioning enabled"
+[0m[31m	FAILED for resource: aws_s3_bucket.insecure_bucket
+[0m[35m	File: /main.tf:8-10
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-16-enable-versioning
+[0m[0m
+		[37m8  | [33mresource "aws_s3_bucket" "insecure_bucket" {
+		[37m9  | [33m  bucket = "company-public-data-bucket-123"
+		[37m10 | [33m}
+
+[97mCheck: CKV2_AWS_41: "Ensure an IAM role is attached to EC2 instance"
+[0m[31m	FAILED for resource: aws_instance.web_server
+[0m[35m	File: /main.tf:57-69
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/ensure-an-iam-role-is-attached-to-ec2-instance
+[0m[0m
+		[37m57 | [33mresource "aws_instance" "web_server" {
+		[37m58 | [33m  ami                         = "ami-0c55b159cbfafe1f0"
+		[37m59 | [33m  instance_type               = "t2.micro"
+		[37m60 |   # DANGEROUS: Automatically assigning a public IP
+		[37m61 | [33m  associate_public_ip_address = true
+		[37m62 | [33m  vpc_security_group_ids      = [aws_security_group.web_sg.id]
+		[37m63 | [33m
+		[37m64 |   # DANGEROUS: Hardcoding secrets into the EC2 User Data script
+		[37m65 | [33m  user_data = <<-EOF
+		[37m66 |               #!/bin/bash
+		[37m67 | [33m              echo "export DB_PASSWORD=super_secret_db_pass" >> /etc/environment
+		[37m68 | [33m              EOF
+		[37m69 | [33m}
+
+[97mCheck: CKV_AWS_144: "Ensure that S3 bucket has cross-region replication enabled"
+[0m[31m	FAILED for resource: aws_s3_bucket.insecure_bucket
+[0m[35m	File: /main.tf:8-10
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-s3-bucket-has-cross-region-replication-enabled
+[0m[0m
+		[37m8  | [33mresource "aws_s3_bucket" "insecure_bucket" {
+		[37m9  | [33m  bucket = "company-public-data-bucket-123"
+		[37m10 | [33m}
+
+[97mCheck: CKV2_AWS_6: "Ensure that S3 bucket has a Public Access block"
+[0m[31m	FAILED for resource: aws_s3_bucket.insecure_bucket
+[0m[35m	File: /main.tf:8-10
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/s3-bucket-should-have-public-access-blocks-defaults-to-false-if-the-public-access-block-is-not-attached
+[0m[0m
+		[37m8  | [33mresource "aws_s3_bucket" "insecure_bucket" {
+		[37m9  | [33m  bucket = "company-public-data-bucket-123"
+		[37m10 | [33m}
+
+[97mCheck: CKV2_AWS_61: "Ensure that an S3 bucket has a lifecycle configuration"
+[0m[31m	FAILED for resource: aws_s3_bucket.insecure_bucket
+[0m[35m	File: /main.tf:8-10
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/bc-aws-2-61
+[0m[0m
+		[37m8  | [33mresource "aws_s3_bucket" "insecure_bucket" {
+		[37m9  | [33m  bucket = "company-public-data-bucket-123"
+		[37m10 | [33m}
+
+[97mCheck: CKV_AWS_53: "Ensure S3 bucket has block public ACLS enabled"
+[0m[31m	FAILED for resource: aws_s3_bucket_public_access_block.insecure_bucket_access
+[0m[35m	File: /main.tf:12-20
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/bc-aws-s3-19
+[0m[0m
+		[37m12 | [33mresource "aws_s3_bucket_public_access_block" "insecure_bucket_access" {
+		[37m13 | [33m  bucket = aws_s3_bucket.insecure_bucket.id
+		[37m14 | [33m
+		[37m15 |   # DANGEROUS: Explicitly disabling public access blocks
+		[37m16 | [33m  block_public_acls       = false
+		[37m17 | [33m  block_public_policy     = false
+		[37m18 | [33m  ignore_public_acls      = false
+		[37m19 | [33m  restrict_public_buckets = false
+		[37m20 | [33m}
+
+[97mCheck: CKV_AWS_54: "Ensure S3 bucket has block public policy enabled"
+[0m[31m	FAILED for resource: aws_s3_bucket_public_access_block.insecure_bucket_access
+[0m[35m	File: /main.tf:12-20
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/bc-aws-s3-20
+[0m[0m
+		[37m12 | [33mresource "aws_s3_bucket_public_access_block" "insecure_bucket_access" {
+		[37m13 | [33m  bucket = aws_s3_bucket.insecure_bucket.id
+		[37m14 | [33m
+		[37m15 |   # DANGEROUS: Explicitly disabling public access blocks
+		[37m16 | [33m  block_public_acls       = false
+		[37m17 | [33m  block_public_policy     = false
+		[37m18 | [33m  ignore_public_acls      = false
+		[37m19 | [33m  restrict_public_buckets = false
+		[37m20 | [33m}
+
+[97mCheck: CKV_AWS_55: "Ensure S3 bucket has ignore public ACLs enabled"
+[0m[31m	FAILED for resource: aws_s3_bucket_public_access_block.insecure_bucket_access
+[0m[35m	File: /main.tf:12-20
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/bc-aws-s3-21
+[0m[0m
+		[37m12 | [33mresource "aws_s3_bucket_public_access_block" "insecure_bucket_access" {
+		[37m13 | [33m  bucket = aws_s3_bucket.insecure_bucket.id
+		[37m14 | [33m
+		[37m15 |   # DANGEROUS: Explicitly disabling public access blocks
+		[37m16 | [33m  block_public_acls       = false
+		[37m17 | [33m  block_public_policy     = false
+		[37m18 | [33m  ignore_public_acls      = false
+		[37m19 | [33m  restrict_public_buckets = false
+		[37m20 | [33m}
+
+[97mCheck: CKV_AWS_56: "Ensure S3 bucket has 'restrict_public_buckets' enabled"
+[0m[31m	FAILED for resource: aws_s3_bucket_public_access_block.insecure_bucket_access
+[0m[35m	File: /main.tf:12-20
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/bc-aws-s3-22
+[0m[0m
+		[37m12 | [33mresource "aws_s3_bucket_public_access_block" "insecure_bucket_access" {
+		[37m13 | [33m  bucket = aws_s3_bucket.insecure_bucket.id
+		[37m14 | [33m
+		[37m15 |   # DANGEROUS: Explicitly disabling public access blocks
+		[37m16 | [33m  block_public_acls       = false
+		[37m17 | [33m  block_public_policy     = false
+		[37m18 | [33m  ignore_public_acls      = false
+		[37m19 | [33m  restrict_public_buckets = false
+		[37m20 | [33m}
+
+[97mCheck: CKV_AWS_23: "Ensure every security groups rule has a description"
+[0m[31m	FAILED for resource: aws_security_group.web_sg
+[0m[35m	File: /main.tf:25-52
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-31
+[0m[0m
+		[37m25 | [33mresource "aws_security_group" "web_sg" {
+		[37m26 | [33m  name        = "allow_all_traffic"
+		[37m27 | [33m  description = "Allow all inbound traffic"
+		[37m28 | [33m
+		[37m29 | [33m  ingress {
+		[37m30 | [33m    description = "SSH from anywhere"
+		[37m31 | [33m    from_port   = 22
+		[37m32 | [33m    to_port     = 22
+		[37m33 | [33m    protocol    = "tcp"
+		[37m34 |     # DANGEROUS: Allowing SSH access from 0.0.0.0/0
+		[37m35 | [33m    cidr_blocks = ["0.0.0.0/0"]
+		[37m36 | [33m  }
+		[37m37 | [33m
+		[37m38 | [33m  ingress {
+		[37m39 | [33m    description = "HTTP from anywhere"
+		[37m40 | [33m    from_port   = 80
+		[37m41 | [33m    to_port     = 80
+		[37m42 | [33m    protocol    = "tcp"
+		[37m43 | [33m    cidr_blocks = ["0.0.0.0/0"]
+		[37m44 | [33m  }
+		[37m45 | [33m
+		[37m46 | [33m  egress {
+		[37m47 | [33m    from_port   = 0
+		[37m48 | [33m    to_port     = 0
+		[37m49 | [33m    protocol    = "-1"
+		[37m50 | [33m    cidr_blocks = ["0.0.0.0/0"]
+		[37m51 | [33m  }
+		[37m52 | [33m}
+
+[97mCheck: CKV_AWS_24: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 22"
+[0m[31m	FAILED for resource: aws_security_group.web_sg
+[0m[35m	File: /main.tf:25-52
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-1-port-security
+[0m[0m
+		[37m25 | [33mresource "aws_security_group" "web_sg" {
+		[37m26 | [33m  name        = "allow_all_traffic"
+		[37m27 | [33m  description = "Allow all inbound traffic"
+		[37m28 | [33m
+		[37m29 | [33m  ingress {
+		[37m30 | [33m    description = "SSH from anywhere"
+		[37m31 | [33m    from_port   = 22
+		[37m32 | [33m    to_port     = 22
+		[37m33 | [33m    protocol    = "tcp"
+		[37m34 |     # DANGEROUS: Allowing SSH access from 0.0.0.0/0
+		[37m35 | [33m    cidr_blocks = ["0.0.0.0/0"]
+		[37m36 | [33m  }
+		[37m37 | [33m
+		[37m38 | [33m  ingress {
+		[37m39 | [33m    description = "HTTP from anywhere"
+		[37m40 | [33m    from_port   = 80
+		[37m41 | [33m    to_port     = 80
+		[37m42 | [33m    protocol    = "tcp"
+		[37m43 | [33m    cidr_blocks = ["0.0.0.0/0"]
+		[37m44 | [33m  }
+		[37m45 | [33m
+		[37m46 | [33m  egress {
+		[37m47 | [33m    from_port   = 0
+		[37m48 | [33m    to_port     = 0
+		[37m49 | [33m    protocol    = "-1"
+		[37m50 | [33m    cidr_blocks = ["0.0.0.0/0"]
+		[37m51 | [33m  }
+		[37m52 | [33m}
+
+[97mCheck: CKV_AWS_260: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 80"
+[0m[31m	FAILED for resource: aws_security_group.web_sg
+[0m[35m	File: /main.tf:25-52
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/ensure-aws-security-groups-do-not-allow-ingress-from-00000-to-port-80
+[0m[0m
+		[37m25 | [33mresource "aws_security_group" "web_sg" {
+		[37m26 | [33m  name        = "allow_all_traffic"
+		[37m27 | [33m  description = "Allow all inbound traffic"
+		[37m28 | [33m
+		[37m29 | [33m  ingress {
+		[37m30 | [33m    description = "SSH from anywhere"
+		[37m31 | [33m    from_port   = 22
+		[37m32 | [33m    to_port     = 22
+		[37m33 | [33m    protocol    = "tcp"
+		[37m34 |     # DANGEROUS: Allowing SSH access from 0.0.0.0/0
+		[37m35 | [33m    cidr_blocks = ["0.0.0.0/0"]
+		[37m36 | [33m  }
+		[37m37 | [33m
+		[37m38 | [33m  ingress {
+		[37m39 | [33m    description = "HTTP from anywhere"
+		[37m40 | [33m    from_port   = 80
+		[37m41 | [33m    to_port     = 80
+		[37m42 | [33m    protocol    = "tcp"
+		[37m43 | [33m    cidr_blocks = ["0.0.0.0/0"]
+		[37m44 | [33m  }
+		[37m45 | [33m
+		[37m46 | [33m  egress {
+		[37m47 | [33m    from_port   = 0
+		[37m48 | [33m    to_port     = 0
+		[37m49 | [33m    protocol    = "-1"
+		[37m50 | [33m    cidr_blocks = ["0.0.0.0/0"]
+		[37m51 | [33m  }
+		[37m52 | [33m}
+
+[97mCheck: CKV_AWS_126: "Ensure that detailed monitoring is enabled for EC2 instances"
+[0m[31m	FAILED for resource: aws_instance.web_server
+[0m[35m	File: /main.tf:57-69
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/ensure-that-detailed-monitoring-is-enabled-for-ec2-instances
+[0m[0m
+		[37m57 | [33mresource "aws_instance" "web_server" {
+		[37m58 | [33m  ami                         = "ami-0c55b159cbfafe1f0"
+		[37m59 | [33m  instance_type               = "t2.micro"
+		[37m60 |   # DANGEROUS: Automatically assigning a public IP
+		[37m61 | [33m  associate_public_ip_address = true
+		[37m62 | [33m  vpc_security_group_ids      = [aws_security_group.web_sg.id]
+		[37m63 | [33m
+		[37m64 |   # DANGEROUS: Hardcoding secrets into the EC2 User Data script
+		[37m65 | [33m  user_data = <<-EOF
+		[37m66 |               #!/bin/bash
+		[37m67 | [33m              echo "export DB_PASSWORD=super_secret_db_pass" >> /etc/environment
+		[37m68 | [33m              EOF
+		[37m69 | [33m}
+
+[97mCheck: CKV_AWS_135: "Ensure that EC2 is EBS optimized"
+[0m[31m	FAILED for resource: aws_instance.web_server
+[0m[35m	File: /main.tf:57-69
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-ec2-is-ebs-optimized
+[0m[0m
+		[37m57 | [33mresource "aws_instance" "web_server" {
+		[37m58 | [33m  ami                         = "ami-0c55b159cbfafe1f0"
+		[37m59 | [33m  instance_type               = "t2.micro"
+		[37m60 |   # DANGEROUS: Automatically assigning a public IP
+		[37m61 | [33m  associate_public_ip_address = true
+		[37m62 | [33m  vpc_security_group_ids      = [aws_security_group.web_sg.id]
+		[37m63 | [33m
+		[37m64 |   # DANGEROUS: Hardcoding secrets into the EC2 User Data script
+		[37m65 | [33m  user_data = <<-EOF
+		[37m66 |               #!/bin/bash
+		[37m67 | [33m              echo "export DB_PASSWORD=super_secret_db_pass" >> /etc/environment
+		[37m68 | [33m              EOF
+		[37m69 | [33m}
+
+[97mCheck: CKV_AWS_79: "Ensure Instance Metadata Service Version 1 is not enabled"
+[0m[31m	FAILED for resource: aws_instance.web_server
+[0m[35m	File: /main.tf:57-69
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/bc-aws-general-31
+[0m[0m
+		[37m57 | [33mresource "aws_instance" "web_server" {
+		[37m58 | [33m  ami                         = "ami-0c55b159cbfafe1f0"
+		[37m59 | [33m  instance_type               = "t2.micro"
+		[37m60 |   # DANGEROUS: Automatically assigning a public IP
+		[37m61 | [33m  associate_public_ip_address = true
+		[37m62 | [33m  vpc_security_group_ids      = [aws_security_group.web_sg.id]
+		[37m63 | [33m
+		[37m64 |   # DANGEROUS: Hardcoding secrets into the EC2 User Data script
+		[37m65 | [33m  user_data = <<-EOF
+		[37m66 |               #!/bin/bash
+		[37m67 | [33m              echo "export DB_PASSWORD=super_secret_db_pass" >> /etc/environment
+		[37m68 | [33m              EOF
+		[37m69 | [33m}
+
+[97mCheck: CKV_AWS_8: "Ensure all data stored in the Launch configuration or instance Elastic Blocks Store is securely encrypted"
+[0m[31m	FAILED for resource: aws_instance.web_server
+[0m[35m	File: /main.tf:57-69
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/general-13
+[0m[0m
+		[37m57 | [33mresource "aws_instance" "web_server" {
+		[37m58 | [33m  ami                         = "ami-0c55b159cbfafe1f0"
+		[37m59 | [33m  instance_type               = "t2.micro"
+		[37m60 |   # DANGEROUS: Automatically assigning a public IP
+		[37m61 | [33m  associate_public_ip_address = true
+		[37m62 | [33m  vpc_security_group_ids      = [aws_security_group.web_sg.id]
+		[37m63 | [33m
+		[37m64 |   # DANGEROUS: Hardcoding secrets into the EC2 User Data script
+		[37m65 | [33m  user_data = <<-EOF
+		[37m66 |               #!/bin/bash
+		[37m67 | [33m              echo "export DB_PASSWORD=super_secret_db_pass" >> /etc/environment
+		[37m68 | [33m              EOF
+		[37m69 | [33m}
+
+[97mCheck: CKV_AWS_88: "EC2 instance should not have public IP."
+[0m[31m	FAILED for resource: aws_instance.web_server
+[0m[35m	File: /main.tf:57-69
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/public-policies/public-12
+[0m[0m
+		[37m57 | [33mresource "aws_instance" "web_server" {
+		[37m58 | [33m  ami                         = "ami-0c55b159cbfafe1f0"
+		[37m59 | [33m  instance_type               = "t2.micro"
+		[37m60 |   # DANGEROUS: Automatically assigning a public IP
+		[37m61 | [33m  associate_public_ip_address = true
+		[37m62 | [33m  vpc_security_group_ids      = [aws_security_group.web_sg.id]
+		[37m63 | [33m
+		[37m64 |   # DANGEROUS: Hardcoding secrets into the EC2 User Data script
+		[37m65 | [33m  user_data = <<-EOF
+		[37m66 |               #!/bin/bash
+		[37m67 | [33m              echo "export DB_PASSWORD=super_secret_db_pass" >> /etc/environment
+		[37m68 | [33m              EOF
+		[37m69 | [33m}
+
+[97mCheck: CKV2_AWS_62: "Ensure S3 buckets should have event notifications enabled"
+[0m[31m	FAILED for resource: aws_s3_bucket.insecure_bucket
+[0m[35m	File: /main.tf:8-10
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/bc-aws-2-62
+[0m[0m
+		[37m8  | [33mresource "aws_s3_bucket" "insecure_bucket" {
+		[37m9  | [33m  bucket = "company-public-data-bucket-123"
+		[37m10 | [33m}
+
+[97mCheck: CKV2_AWS_6: "Ensure that S3 bucket has a Public Access block"
+[0m[31m	FAILED for resource: aws_s3_bucket.insecure_bucket
+[0m[35m	File: /main.tf:8-10
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/s3-bucket-should-have-public-access-blocks-defaults-to-false-if-the-public-access-block-is-not-attached
+[0m[0m
+		[37m8  | [33mresource "aws_s3_bucket" "insecure_bucket" {
+		[37m9  | [33m  bucket = "company-public-data-bucket-123"
+		[37m10 | [33m}
+
+[97mCheck: CKV_AWS_145: "Ensure that S3 buckets are encrypted with KMS by default"
+[0m[31m	FAILED for resource: aws_s3_bucket.insecure_bucket
+[0m[35m	File: /main.tf:8-10
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-s3-buckets-are-encrypted-with-kms-by-default
+[0m[0m
+		[37m8  | [33mresource "aws_s3_bucket" "insecure_bucket" {
+		[37m9  | [33m  bucket = "company-public-data-bucket-123"
+		[37m10 | [33m}
+
+[97mCheck: CKV_AWS_18: "Ensure the S3 bucket has access logging enabled"
+[0m[31m	FAILED for resource: aws_s3_bucket.insecure_bucket
+[0m[35m	File: /main.tf:8-10
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-13-enable-logging
+[0m[0m
+		[37m8  | [33mresource "aws_s3_bucket" "insecure_bucket" {
+		[37m9  | [33m  bucket = "company-public-data-bucket-123"
+		[37m10 | [33m}
+
+[97mCheck: CKV2_AWS_41: "Ensure an IAM role is attached to EC2 instance"
+[0m[31m	FAILED for resource: aws_instance.web_server
+[0m[35m	File: /main.tf:57-69
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/ensure-an-iam-role-is-attached-to-ec2-instance
+[0m[0m
+		[37m57 | [33mresource "aws_instance" "web_server" {
+		[37m58 | [33m  ami                         = "ami-0c55b159cbfafe1f0"
+		[37m59 | [33m  instance_type               = "t2.micro"
+		[37m60 |   # DANGEROUS: Automatically assigning a public IP
+		[37m61 | [33m  associate_public_ip_address = true
+		[37m62 | [33m  vpc_security_group_ids      = [aws_security_group.web_sg.id]
+		[37m63 | [33m
+		[37m64 |   # DANGEROUS: Hardcoding secrets into the EC2 User Data script
+		[37m65 | [33m  user_data = <<-EOF
+		[37m66 |               #!/bin/bash
+		[37m67 | [33m              echo "export DB_PASSWORD=super_secret_db_pass" >> /etc/environment
+		[37m68 | [33m              EOF
+		[37m69 | [33m}
+
+[97mCheck: CKV_AWS_144: "Ensure that S3 bucket has cross-region replication enabled"
+[0m[31m	FAILED for resource: aws_s3_bucket.insecure_bucket
+[0m[35m	File: /main.tf:8-10
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-s3-bucket-has-cross-region-replication-enabled
+[0m[0m
+		[37m8  | [33mresource "aws_s3_bucket" "insecure_bucket" {
+		[37m9  | [33m  bucket = "company-public-data-bucket-123"
+		[37m10 | [33m}
+
+[97mCheck: CKV2_AWS_61: "Ensure that an S3 bucket has a lifecycle configuration"
+[0m[31m	FAILED for resource: aws_s3_bucket.insecure_bucket
+[0m[35m	File: /main.tf:8-10
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/bc-aws-2-61
+[0m[0m
+		[37m8  | [33mresource "aws_s3_bucket" "insecure_bucket" {
+		[37m9  | [33m  bucket = "company-public-data-bucket-123"
+		[37m10 | [33m}
+
+[97mCheck: CKV_AWS_21: "Ensure all data stored in the S3 bucket have versioning enabled"
+[0m[31m	FAILED for resource: aws_s3_bucket.insecure_bucket
+[0m[35m	File: /main.tf:8-10
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-16-enable-versioning
+[0m[0m
+		[37m8  | [33mresource "aws_s3_bucket" "insecure_bucket" {
+		[37m9  | [33m  bucket = "company-public-data-bucket-123"
+		[37m10 | [33m}
+
+[34mdockerfile scan results:
+[0m[36m
+Passed checks: 46, Failed checks: 4, Skipped checks: 0
+
+[0m[97mCheck: CKV_DOCKER_5: "Ensure update instructions are not use alone in the Dockerfile"
+[0m[32m	PASSED for resource: /Dockerfile.
+[0m[35m	File: /Dockerfile:1-15
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-update-instructions-are-not-used-alone-in-the-dockerfile
+[0m[0m[97mCheck: CKV_DOCKER_9: "Ensure that APT isn't used"
+[0m[32m	PASSED for resource: /Dockerfile.
+[0m[35m	File: /Dockerfile:1-15
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-docker-apt-is-not-used
+[0m[0m[97mCheck: CKV_DOCKER_11: "Ensure From Alias are unique for multistage builds."
+[0m[32m	PASSED for resource: /Dockerfile.
+[0m[35m	File: /Dockerfile:1-15
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-docker-from-alias-is-unique-for-multistage-builds
+[0m[0m[97mCheck: CKV_DOCKER_7: "Ensure the base image uses a non latest version tag"
+[0m[32m	PASSED for resource: /Dockerfile.FROM
+[0m[35m	File: /Dockerfile:2-2
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-the-base-image-uses-a-non-latest-version-tag
+[0m[0m[97mCheck: CKV_DOCKER_10: "Ensure that WORKDIR values are absolute paths"
+[0m[32m	PASSED for resource: /Dockerfile.
+[0m[35m	File: /Dockerfile:1-15
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-docker-workdir-values-are-absolute-paths
+[0m[0m[97mCheck: CKV_DOCKER_1: "Ensure port 22 is not exposed"
+[0m[32m	PASSED for resource: /Dockerfile.
+[0m[35m	File: /Dockerfile:1-15
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-port-22-is-not-exposed
+[0m[0m[97mCheck: CKV2_DOCKER_4: "Ensure that certificate validation isn't disabled with the pip '--trusted-host' option"
+[0m[32m	PASSED for resource: /Dockerfile.RUN
+[0m[35m	File: /Dockerfile:9-9
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-docker-pip-secure
+[0m[0m[97mCheck: CKV2_DOCKER_1: "Ensure that sudo isn't used"
+[0m[32m	PASSED for resource: /Dockerfile.RUN
+[0m[35m	File: /Dockerfile:9-9
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-docker-dont-use-sudo
+[0m[0m[97mCheck: CKV2_DOCKER_12: "Ensure that certificate validation isn't disabled for npm via the 'NPM_CONFIG_STRICT_SSL' environmnet variable"
+[0m[32m	PASSED for resource: /Dockerfile.RUN
+[0m[35m	File: /Dockerfile:9-9
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-docker-npm-strict-ssl
+[0m[0m[97mCheck: CKV2_DOCKER_17: "Ensure that 'chpasswd' is not used to set or remove passwords"
+[0m[32m	PASSED for resource: /Dockerfile.RUN
+[0m[35m	File: /Dockerfile:9-9
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/bc-docker-2-17
+[0m[0m[97mCheck: CKV2_DOCKER_16: "Ensure that certificate validation isn't disabled with pip via the 'PIP_TRUSTED_HOST' environment variable"
+[0m[32m	PASSED for resource: /Dockerfile.RUN
+[0m[35m	File: /Dockerfile:9-9
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-docker-pip-trusted-host
+[0m[0m[97mCheck: CKV2_DOCKER_2: "Ensure that certificate validation isn't disabled with curl"
+[0m[32m	PASSED for resource: /Dockerfile.RUN
+[0m[35m	File: /Dockerfile:9-9
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-docker-curl-secure
+[0m[0m[97mCheck: CKV2_DOCKER_8: "Ensure that packages with untrusted or missing signatures are not used by apt-get via the '--allow-unauthenticated' option"
+[0m[32m	PASSED for resource: /Dockerfile.RUN
+[0m[35m	File: /Dockerfile:9-9
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-docker-apt-authenticated
+[0m[0m[97mCheck: CKV2_DOCKER_9: "Ensure that packages with untrusted or missing GPG signatures are not used by dnf, tdnf, or yum via the '--nogpgcheck' option"
+[0m[32m	PASSED for resource: /Dockerfile.RUN
+[0m[35m	File: /Dockerfile:9-9
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-docker-yum-signed
+[0m[0m[97mCheck: CKV2_DOCKER_13: "Ensure that certificate validation isn't disabled for npm or yarn by setting the option strict-ssl to false"
+[0m[32m	PASSED for resource: /Dockerfile.RUN
+[0m[35m	File: /Dockerfile:9-9
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-docker-npm-strict-ssl2
+[0m[0m[97mCheck: CKV2_DOCKER_15: "Ensure that the yum and dnf package managers are not configured to disable SSL certificate validation via the 'sslverify' configuration option"
+[0m[32m	PASSED for resource: /Dockerfile.RUN
+[0m[35m	File: /Dockerfile:9-9
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-docker-yum-ssl
+[0m[0m[97mCheck: CKV2_DOCKER_5: "Ensure that certificate validation isn't disabled with the PYTHONHTTPSVERIFY environmnet variable"
+[0m[32m	PASSED for resource: /Dockerfile.RUN
+[0m[35m	File: /Dockerfile:9-9
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-docker-PYTHONHTTPSVERIFY-secure
+[0m[0m[97mCheck: CKV2_DOCKER_6: "Ensure that certificate validation isn't disabled with the NODE_TLS_REJECT_UNAUTHORIZED environmnet variable"
+[0m[32m	PASSED for resource: /Dockerfile.RUN
+[0m[35m	File: /Dockerfile:9-9
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-docker-node-tls-secure
+[0m[0m[97mCheck: CKV2_DOCKER_14: "Ensure that certificate validation isn't disabled for git by setting the environment variable 'GIT_SSL_NO_VERIFY' to any value"
+[0m[32m	PASSED for resource: /Dockerfile.RUN
+[0m[35m	File: /Dockerfile:9-9
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-docker-git-ssl
+[0m[0m[97mCheck: CKV2_DOCKER_11: "Ensure that the '--force-yes' option is not used, as it disables signature validation and allows packages to be downgraded which can leave the system in a broken or inconsistent state"
+[0m[32m	PASSED for resource: /Dockerfile.RUN
+[0m[35m	File: /Dockerfile:9-9
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-docker-apt-force
+[0m[0m[97mCheck: CKV2_DOCKER_10: "Ensure that packages with untrusted or missing signatures are not used by rpm via the '--nodigest', '--nosignature', '--noverify', or '--nofiledigest' options"
+[0m[32m	PASSED for resource: /Dockerfile.RUN
+[0m[35m	File: /Dockerfile:9-9
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-docker-rpm-signed
+[0m[0m[97mCheck: CKV2_DOCKER_3: "Ensure that certificate validation isn't disabled with wget"
+[0m[32m	PASSED for resource: /Dockerfile.RUN
+[0m[35m	File: /Dockerfile:9-9
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-docker-wget-secure
+[0m[0m[97mCheck: CKV2_DOCKER_7: "Ensure that packages with untrusted or missing signatures are not used by apk via the '--allow-untrusted' option"
+[0m[32m	PASSED for resource: /Dockerfile.RUN
+[0m[35m	File: /Dockerfile:9-9
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-docker-apk-trusted
+[0m[0m[97mCheck: CKV_DOCKER_5: "Ensure update instructions are not use alone in the Dockerfile"
+[0m[32m	PASSED for resource: /Dockerfile.
+[0m[35m	File: /Dockerfile:1-15
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-update-instructions-are-not-used-alone-in-the-dockerfile
+[0m[0m[97mCheck: CKV_DOCKER_9: "Ensure that APT isn't used"
+[0m[32m	PASSED for resource: /Dockerfile.
+[0m[35m	File: /Dockerfile:1-15
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-docker-apt-is-not-used
+[0m[0m[97mCheck: CKV_DOCKER_11: "Ensure From Alias are unique for multistage builds."
+[0m[32m	PASSED for resource: /Dockerfile.
+[0m[35m	File: /Dockerfile:1-15
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-docker-from-alias-is-unique-for-multistage-builds
+[0m[0m[97mCheck: CKV_DOCKER_7: "Ensure the base image uses a non latest version tag"
+[0m[32m	PASSED for resource: /Dockerfile.FROM
+[0m[35m	File: /Dockerfile:2-2
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-the-base-image-uses-a-non-latest-version-tag
+[0m[0m[97mCheck: CKV_DOCKER_10: "Ensure that WORKDIR values are absolute paths"
+[0m[32m	PASSED for resource: /Dockerfile.
+[0m[35m	File: /Dockerfile:1-15
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-docker-workdir-values-are-absolute-paths
+[0m[0m[97mCheck: CKV_DOCKER_1: "Ensure port 22 is not exposed"
+[0m[32m	PASSED for resource: /Dockerfile.
+[0m[35m	File: /Dockerfile:1-15
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-port-22-is-not-exposed
+[0m[0m[97mCheck: CKV2_DOCKER_1: "Ensure that sudo isn't used"
+[0m[32m	PASSED for resource: /Dockerfile.RUN
+[0m[35m	File: /Dockerfile:9-9
+[0m[97mCheck: CKV2_DOCKER_12: "Ensure that certificate validation isn't disabled for npm via the 'NPM_CONFIG_STRICT_SSL' environmnet variable"
+[0m[32m	PASSED for resource: /Dockerfile.RUN
+[0m[35m	File: /Dockerfile:9-9
+[0m[97mCheck: CKV2_DOCKER_17: "Ensure that 'chpasswd' is not used to set or remove passwords"
+[0m[32m	PASSED for resource: /Dockerfile.RUN
+[0m[35m	File: /Dockerfile:9-9
+[0m[97mCheck: CKV2_DOCKER_16: "Ensure that certificate validation isn't disabled with pip via the 'PIP_TRUSTED_HOST' environment variable"
+[0m[32m	PASSED for resource: /Dockerfile.RUN
+[0m[35m	File: /Dockerfile:9-9
+[0m[97mCheck: CKV2_DOCKER_5: "Ensure that certificate validation isn't disabled with the PYTHONHTTPSVERIFY environmnet variable"
+[0m[32m	PASSED for resource: /Dockerfile.RUN
+[0m[35m	File: /Dockerfile:9-9
+[0m[97mCheck: CKV2_DOCKER_8: "Ensure that packages with untrusted or missing signatures are not used by apt-get via the '--allow-unauthenticated' option"
+[0m[32m	PASSED for resource: /Dockerfile.RUN
+[0m[35m	File: /Dockerfile:9-9
+[0m[97mCheck: CKV2_DOCKER_9: "Ensure that packages with untrusted or missing GPG signatures are not used by dnf, tdnf, or yum via the '--nogpgcheck' option"
+[0m[32m	PASSED for resource: /Dockerfile.RUN
+[0m[35m	File: /Dockerfile:9-9
+[0m[97mCheck: CKV2_DOCKER_4: "Ensure that certificate validation isn't disabled with the pip '--trusted-host' option"
+[0m[32m	PASSED for resource: /Dockerfile.RUN
+[0m[35m	File: /Dockerfile:9-9
+[0m[97mCheck: CKV2_DOCKER_15: "Ensure that the yum and dnf package managers are not configured to disable SSL certificate validation via the 'sslverify' configuration option"
+[0m[32m	PASSED for resource: /Dockerfile.RUN
+[0m[35m	File: /Dockerfile:9-9
+[0m[97mCheck: CKV2_DOCKER_2: "Ensure that certificate validation isn't disabled with curl"
+[0m[32m	PASSED for resource: /Dockerfile.RUN
+[0m[35m	File: /Dockerfile:9-9
+[0m[97mCheck: CKV2_DOCKER_13: "Ensure that certificate validation isn't disabled for npm or yarn by setting the option strict-ssl to false"
+[0m[32m	PASSED for resource: /Dockerfile.RUN
+[0m[35m	File: /Dockerfile:9-9
+[0m[97mCheck: CKV2_DOCKER_6: "Ensure that certificate validation isn't disabled with the NODE_TLS_REJECT_UNAUTHORIZED environmnet variable"
+[0m[32m	PASSED for resource: /Dockerfile.RUN
+[0m[35m	File: /Dockerfile:9-9
+[0m[97mCheck: CKV2_DOCKER_14: "Ensure that certificate validation isn't disabled for git by setting the environment variable 'GIT_SSL_NO_VERIFY' to any value"
+[0m[32m	PASSED for resource: /Dockerfile.RUN
+[0m[35m	File: /Dockerfile:9-9
+[0m[97mCheck: CKV2_DOCKER_11: "Ensure that the '--force-yes' option is not used, as it disables signature validation and allows packages to be downgraded which can leave the system in a broken or inconsistent state"
+[0m[32m	PASSED for resource: /Dockerfile.RUN
+[0m[35m	File: /Dockerfile:9-9
+[0m[97mCheck: CKV2_DOCKER_10: "Ensure that packages with untrusted or missing signatures are not used by rpm via the '--nodigest', '--nosignature', '--noverify', or '--nofiledigest' options"
+[0m[32m	PASSED for resource: /Dockerfile.RUN
+[0m[35m	File: /Dockerfile:9-9
+[0m[97mCheck: CKV2_DOCKER_3: "Ensure that certificate validation isn't disabled with wget"
+[0m[32m	PASSED for resource: /Dockerfile.RUN
+[0m[35m	File: /Dockerfile:9-9
+[0m[97mCheck: CKV2_DOCKER_7: "Ensure that packages with untrusted or missing signatures are not used by apk via the '--allow-untrusted' option"
+[0m[32m	PASSED for resource: /Dockerfile.RUN
+[0m[35m	File: /Dockerfile:9-9
+[0m[97mCheck: CKV_DOCKER_2: "Ensure that HEALTHCHECK instructions have been added to container images"
+[0m[31m	FAILED for resource: /Dockerfile.
+[0m[35m	File: /Dockerfile:1-15
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-that-healthcheck-instructions-have-been-added-to-container-images
+[0m[0m
+		[37m1  | # Intentionally using an outdated, unsupported base image
+		[37m2  | [33mFROM python:3.6-slim-stretch
+		[37m3  | [33m
+		[37m4  | [33mWORKDIR /app
+		[37m5  | [33m
+		[37m6  | [33mCOPY requirements.txt .
+		[37m7  | [33m
+		[37m8  | # Install the vulnerable dependencies
+		[37m9  | [33mRUN pip install --no-cache-dir -r requirements.txt
+		[37m10 | [33m
+		[37m11 | [33mCOPY app.py .
+		[37m12 | [33m
+		[37m13 | [33mEXPOSE 8080
+		[37m14 | [33m
+		[37m15 | [33mCMD ["python", "app.py"]
+
+[97mCheck: CKV_DOCKER_3: "Ensure that a user for the container has been created"
+[0m[31m	FAILED for resource: /Dockerfile.
+[0m[35m	File: /Dockerfile:1-15
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-that-a-user-for-the-container-has-been-created
+[0m[0m
+		[37m1  | # Intentionally using an outdated, unsupported base image
+		[37m2  | [33mFROM python:3.6-slim-stretch
+		[37m3  | [33m
+		[37m4  | [33mWORKDIR /app
+		[37m5  | [33m
+		[37m6  | [33mCOPY requirements.txt .
+		[37m7  | [33m
+		[37m8  | # Install the vulnerable dependencies
+		[37m9  | [33mRUN pip install --no-cache-dir -r requirements.txt
+		[37m10 | [33m
+		[37m11 | [33mCOPY app.py .
+		[37m12 | [33m
+		[37m13 | [33mEXPOSE 8080
+		[37m14 | [33m
+		[37m15 | [33mCMD ["python", "app.py"]
+
+[97mCheck: CKV_DOCKER_2: "Ensure that HEALTHCHECK instructions have been added to container images"
+[0m[31m	FAILED for resource: /Dockerfile.
+[0m[35m	File: /Dockerfile:1-15
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-that-healthcheck-instructions-have-been-added-to-container-images
+[0m[0m
+		[37m1  | # Intentionally using an outdated, unsupported base image
+		[37m2  | [33mFROM python:3.6-slim-stretch
+		[37m3  | [33m
+		[37m4  | [33mWORKDIR /app
+		[37m5  | [33m
+		[37m6  | [33mCOPY requirements.txt .
+		[37m7  | [33m
+		[37m8  | # Install the vulnerable dependencies
+		[37m9  | [33mRUN pip install --no-cache-dir -r requirements.txt
+		[37m10 | [33m
+		[37m11 | [33mCOPY app.py .
+		[37m12 | [33m
+		[37m13 | [33mEXPOSE 8080
+		[37m14 | [33m
+		[37m15 | [33mCMD ["python", "app.py"]
+
+[97mCheck: CKV_DOCKER_3: "Ensure that a user for the container has been created"
+[0m[31m	FAILED for resource: /Dockerfile.
+[0m[35m	File: /Dockerfile:1-15
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/docker-policies/docker-policy-index/ensure-that-a-user-for-the-container-has-been-created
+[0m[0m
+		[37m1  | # Intentionally using an outdated, unsupported base image
+		[37m2  | [33mFROM python:3.6-slim-stretch
+		[37m3  | [33m
+		[37m4  | [33mWORKDIR /app
+		[37m5  | [33m
+		[37m6  | [33mCOPY requirements.txt .
+		[37m7  | [33m
+		[37m8  | # Install the vulnerable dependencies
+		[37m9  | [33mRUN pip install --no-cache-dir -r requirements.txt
+		[37m10 | [33m
+		[37m11 | [33mCOPY app.py .
+		[37m12 | [33m
+		[37m13 | [33mEXPOSE 8080
+		[37m14 | [33m
+		[37m15 | [33mCMD ["python", "app.py"]
+
+[34msecrets scan results:
+[0m[36m
+Passed checks: 0, Failed checks: 2, Skipped checks: 0
+
+[0m[97mCheck: CKV_SECRET_6: "Base64 High Entropy String"
+[0m[31m	FAILED for resource: 59dd2816d38bbc0faedcfd6c8194d02e8eb3873d
+[0m[35m	File: /main.tf:67-68
+[0m	Guide: [1m[4m[34mhttps://docs.prismacloud.io/en/enterprise-edition/policy-reference/secrets-policies/secrets-policy-index/git-secrets-6
+[0m[0m
+		[37m67 | [33m              echo "export DB_PASSWORD=super**********" >> /etc/environment
+
+[97mCheck: CKV_SECRET_6: "Base64 High Entropy String"
+[0m[31m	FAILED for resource: 59dd2816d38bbc0faedcfd6c8194d02e8eb3873d
+[0m[35m	File: /main.tf:67-68
+[0m
+		[37m67 | [33m              echo "export DB_PASSWORD=super**********" >> /etc/environment
+
+[34mgithub_actions scan results:
+[0m[36m
+Passed checks: 146, Failed checks: 6, Skipped checks: 0
+
+[0m[97mCheck: CKV_GHA_7: "The build output cannot be affected by user parameters other than the build entry point and the top-level source location. GitHub Actions workflow_dispatch inputs MUST be empty. "
+[0m[32m	PASSED for resource: on(Container Security Scan)
+[0m[35m	File: /.github/workflows/container-scan.yml:4-10
+[0m[97mCheck: CKV_GHA_6: "Found artifact build without evidence of cosign sbom attestation in pipeline"
+[0m[32m	PASSED for resource: jobs
+[0m[35m	File: /.github/workflows/container-scan.yml:10-49
+[0m[97mCheck: CKV_GHA_3: "Suspicious use of curl with secrets"
+[0m[32m	PASSED for resource: jobs(docker-container)
+[0m[35m	File: /.github/workflows/container-scan.yml:11-49
+[0m[97mCheck: CKV_GHA_4: "Suspicious use of netcat with IP address"
+[0m[32m	PASSED for resource: jobs(docker-container)
+[0m[35m	File: /.github/workflows/container-scan.yml:11-49
+[0m[97mCheck: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+[0m[32m	PASSED for resource: jobs(docker-container)
+[0m[35m	File: /.github/workflows/container-scan.yml:11-49
+[0m[97mCheck: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+[0m[32m	PASSED for resource: jobs(docker-container)
+[0m[35m	File: /.github/workflows/container-scan.yml:11-49
+[0m[97mCheck: CKV_GHA_5: "Found artifact build without evidence of cosign sign execution in pipeline"
+[0m[32m	PASSED for resource: jobs
+[0m[35m	File: /.github/workflows/container-scan.yml:10-49
+[0m[97mCheck: CKV_GHA_3: "Suspicious use of curl with secrets"
+[0m[32m	PASSED for resource: jobs(docker-container).steps[1](Checkout Code)
+[0m[35m	File: /.github/workflows/container-scan.yml:15-22
+[0m[97mCheck: CKV_GHA_3: "Suspicious use of curl with secrets"
+[0m[32m	PASSED for resource: jobs(docker-container).steps[2](Build Vulnerable Docker Image)
+[0m[35m	File: /.github/workflows/container-scan.yml:21-28
+[0m[97mCheck: CKV_GHA_3: "Suspicious use of curl with secrets"
+[0m[32m	PASSED for resource: jobs(docker-container).steps[3](Run Trivy Vulnerability Scanner)
+[0m[35m	File: /.github/workflows/container-scan.yml:27-41
+[0m[97mCheck: CKV_GHA_3: "Suspicious use of curl with secrets"
+[0m[32m	PASSED for resource: jobs(docker-container).steps[4](Run Snyk Container Scanner)
+[0m[35m	File: /.github/workflows/container-scan.yml:40-49
+[0m[97mCheck: CKV_GHA_4: "Suspicious use of netcat with IP address"
+[0m[32m	PASSED for resource: jobs(docker-container).steps[1](Checkout Code)
+[0m[35m	File: /.github/workflows/container-scan.yml:15-22
+[0m[97mCheck: CKV_GHA_4: "Suspicious use of netcat with IP address"
+[0m[32m	PASSED for resource: jobs(docker-container).steps[2](Build Vulnerable Docker Image)
+[0m[35m	File: /.github/workflows/container-scan.yml:21-28
+[0m[97mCheck: CKV_GHA_4: "Suspicious use of netcat with IP address"
+[0m[32m	PASSED for resource: jobs(docker-container).steps[3](Run Trivy Vulnerability Scanner)
+[0m[35m	File: /.github/workflows/container-scan.yml:27-41
+[0m[97mCheck: CKV_GHA_4: "Suspicious use of netcat with IP address"
+[0m[32m	PASSED for resource: jobs(docker-container).steps[4](Run Snyk Container Scanner)
+[0m[35m	File: /.github/workflows/container-scan.yml:40-49
+[0m[97mCheck: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+[0m[32m	PASSED for resource: jobs(docker-container).steps[1](Checkout Code)
+[0m[35m	File: /.github/workflows/container-scan.yml:15-22
+[0m[97mCheck: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+[0m[32m	PASSED for resource: jobs(docker-container).steps[2](Build Vulnerable Docker Image)
+[0m[35m	File: /.github/workflows/container-scan.yml:21-28
+[0m[97mCheck: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+[0m[32m	PASSED for resource: jobs(docker-container).steps[3](Run Trivy Vulnerability Scanner)
+[0m[35m	File: /.github/workflows/container-scan.yml:27-41
+[0m[97mCheck: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+[0m[32m	PASSED for resource: jobs(docker-container).steps[4](Run Snyk Container Scanner)
+[0m[35m	File: /.github/workflows/container-scan.yml:40-49
+[0m[97mCheck: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+[0m[32m	PASSED for resource: jobs(docker-container).steps[1](Checkout Code)
+[0m[35m	File: /.github/workflows/container-scan.yml:15-22
+[0m[97mCheck: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+[0m[32m	PASSED for resource: jobs(docker-container).steps[2](Build Vulnerable Docker Image)
+[0m[35m	File: /.github/workflows/container-scan.yml:21-28
+[0m[97mCheck: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+[0m[32m	PASSED for resource: jobs(docker-container).steps[3](Run Trivy Vulnerability Scanner)
+[0m[35m	File: /.github/workflows/container-scan.yml:27-41
+[0m[97mCheck: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+[0m[32m	PASSED for resource: jobs(docker-container).steps[4](Run Snyk Container Scanner)
+[0m[35m	File: /.github/workflows/container-scan.yml:40-49
+[0m[97mCheck: CKV_GHA_7: "The build output cannot be affected by user parameters other than the build entry point and the top-level source location. GitHub Actions workflow_dispatch inputs MUST be empty. "
+[0m[32m	PASSED for resource: on(IaC Security Scan)
+[0m[35m	File: /.github/workflows/iac-scan.yml:4-10
+[0m[97mCheck: CKV_GHA_6: "Found artifact build without evidence of cosign sbom attestation in pipeline"
+[0m[32m	PASSED for resource: jobs
+[0m[35m	File: /.github/workflows/iac-scan.yml:10-52
+[0m[97mCheck: CKV_GHA_3: "Suspicious use of curl with secrets"
+[0m[32m	PASSED for resource: jobs(terraform-iac)
+[0m[35m	File: /.github/workflows/iac-scan.yml:11-52
+[0m[97mCheck: CKV_GHA_4: "Suspicious use of netcat with IP address"
+[0m[32m	PASSED for resource: jobs(terraform-iac)
+[0m[35m	File: /.github/workflows/iac-scan.yml:11-52
+[0m[97mCheck: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+[0m[32m	PASSED for resource: jobs(terraform-iac)
+[0m[35m	File: /.github/workflows/iac-scan.yml:11-52
+[0m[97mCheck: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+[0m[32m	PASSED for resource: jobs(terraform-iac)
+[0m[35m	File: /.github/workflows/iac-scan.yml:11-52
+[0m[97mCheck: CKV_GHA_5: "Found artifact build without evidence of cosign sign execution in pipeline"
+[0m[32m	PASSED for resource: jobs
+[0m[35m	File: /.github/workflows/iac-scan.yml:10-52
+[0m[97mCheck: CKV_GHA_3: "Suspicious use of curl with secrets"
+[0m[32m	PASSED for resource: jobs(terraform-iac).steps[1](Checkout Code)
+[0m[35m	File: /.github/workflows/iac-scan.yml:15-22
+[0m[97mCheck: CKV_GHA_3: "Suspicious use of curl with secrets"
+[0m[32m	PASSED for resource: jobs(terraform-iac).steps[2](Run Checkov IaC Scan)
+[0m[35m	File: /.github/workflows/iac-scan.yml:21-32
+[0m[97mCheck: CKV_GHA_3: "Suspicious use of curl with secrets"
+[0m[32m	PASSED for resource: jobs(terraform-iac).steps[3](Run Trivy IaC Scan)
+[0m[35m	File: /.github/workflows/iac-scan.yml:31-44
+[0m[97mCheck: CKV_GHA_3: "Suspicious use of curl with secrets"
+[0m[32m	PASSED for resource: jobs(terraform-iac).steps[4](Run Snyk IaC Scan)
+[0m[35m	File: /.github/workflows/iac-scan.yml:43-52
+[0m[97mCheck: CKV_GHA_4: "Suspicious use of netcat with IP address"
+[0m[32m	PASSED for resource: jobs(terraform-iac).steps[1](Checkout Code)
+[0m[35m	File: /.github/workflows/iac-scan.yml:15-22
+[0m[97mCheck: CKV_GHA_4: "Suspicious use of netcat with IP address"
+[0m[32m	PASSED for resource: jobs(terraform-iac).steps[2](Run Checkov IaC Scan)
+[0m[35m	File: /.github/workflows/iac-scan.yml:21-32
+[0m[97mCheck: CKV_GHA_4: "Suspicious use of netcat with IP address"
+[0m[32m	PASSED for resource: jobs(terraform-iac).steps[3](Run Trivy IaC Scan)
+[0m[35m	File: /.github/workflows/iac-scan.yml:31-44
+[0m[97mCheck: CKV_GHA_4: "Suspicious use of netcat with IP address"
+[0m[32m	PASSED for resource: jobs(terraform-iac).steps[4](Run Snyk IaC Scan)
+[0m[35m	File: /.github/workflows/iac-scan.yml:43-52
+[0m[97mCheck: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+[0m[32m	PASSED for resource: jobs(terraform-iac).steps[1](Checkout Code)
+[0m[35m	File: /.github/workflows/iac-scan.yml:15-22
+[0m[97mCheck: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+[0m[32m	PASSED for resource: jobs(terraform-iac).steps[2](Run Checkov IaC Scan)
+[0m[35m	File: /.github/workflows/iac-scan.yml:21-32
+[0m[97mCheck: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+[0m[32m	PASSED for resource: jobs(terraform-iac).steps[3](Run Trivy IaC Scan)
+[0m[35m	File: /.github/workflows/iac-scan.yml:31-44
+[0m[97mCheck: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+[0m[32m	PASSED for resource: jobs(terraform-iac).steps[4](Run Snyk IaC Scan)
+[0m[35m	File: /.github/workflows/iac-scan.yml:43-52
+[0m[97mCheck: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+[0m[32m	PASSED for resource: jobs(terraform-iac).steps[1](Checkout Code)
+[0m[35m	File: /.github/workflows/iac-scan.yml:15-22
+[0m[97mCheck: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+[0m[32m	PASSED for resource: jobs(terraform-iac).steps[2](Run Checkov IaC Scan)
+[0m[35m	File: /.github/workflows/iac-scan.yml:21-32
+[0m[97mCheck: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+[0m[32m	PASSED for resource: jobs(terraform-iac).steps[3](Run Trivy IaC Scan)
+[0m[35m	File: /.github/workflows/iac-scan.yml:31-44
+[0m[97mCheck: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+[0m[32m	PASSED for resource: jobs(terraform-iac).steps[4](Run Snyk IaC Scan)
+[0m[35m	File: /.github/workflows/iac-scan.yml:43-52
+[0m[97mCheck: CKV_GHA_7: "The build output cannot be affected by user parameters other than the build entry point and the top-level source location. GitHub Actions workflow_dispatch inputs MUST be empty. "
+[0m[32m	PASSED for resource: on(SAST Security Scan)
+[0m[35m	File: /.github/workflows/sast-scan.yml:4-10
+[0m[97mCheck: CKV_GHA_6: "Found artifact build without evidence of cosign sbom attestation in pipeline"
+[0m[32m	PASSED for resource: jobs
+[0m[35m	File: /.github/workflows/sast-scan.yml:10-38
+[0m[97mCheck: CKV_GHA_3: "Suspicious use of curl with secrets"
+[0m[32m	PASSED for resource: jobs(python-sast)
+[0m[35m	File: /.github/workflows/sast-scan.yml:11-38
+[0m[97mCheck: CKV_GHA_4: "Suspicious use of netcat with IP address"
+[0m[32m	PASSED for resource: jobs(python-sast)
+[0m[35m	File: /.github/workflows/sast-scan.yml:11-38
+[0m[97mCheck: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+[0m[32m	PASSED for resource: jobs(python-sast)
+[0m[35m	File: /.github/workflows/sast-scan.yml:11-38
+[0m[97mCheck: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+[0m[32m	PASSED for resource: jobs(python-sast)
+[0m[35m	File: /.github/workflows/sast-scan.yml:11-38
+[0m[97mCheck: CKV_GHA_5: "Found artifact build without evidence of cosign sign execution in pipeline"
+[0m[32m	PASSED for resource: jobs
+[0m[35m	File: /.github/workflows/sast-scan.yml:10-38
+[0m[97mCheck: CKV_GHA_3: "Suspicious use of curl with secrets"
+[0m[32m	PASSED for resource: jobs(python-sast).steps[1](Checkout Code)
+[0m[35m	File: /.github/workflows/sast-scan.yml:15-22
+[0m[97mCheck: CKV_GHA_3: "Suspicious use of curl with secrets"
+[0m[32m	PASSED for resource: jobs(python-sast).steps[2](Setup Snyk CLI)
+[0m[35m	File: /.github/workflows/sast-scan.yml:21-25
+[0m[97mCheck: CKV_GHA_3: "Suspicious use of curl with secrets"
+[0m[32m	PASSED for resource: jobs(python-sast).steps[3](Run Snyk Code SAST Scan)
+[0m[35m	File: /.github/workflows/sast-scan.yml:24-33
+[0m[97mCheck: CKV_GHA_3: "Suspicious use of curl with secrets"
+[0m[32m	PASSED for resource: jobs(python-sast).steps[4](Install Bandit)
+[0m[35m	File: /.github/workflows/sast-scan.yml:32-36
+[0m[97mCheck: CKV_GHA_3: "Suspicious use of curl with secrets"
+[0m[32m	PASSED for resource: jobs(python-sast).steps[5](Run Bandit SAST Scan)
+[0m[35m	File: /.github/workflows/sast-scan.yml:35-38
+[0m[97mCheck: CKV_GHA_4: "Suspicious use of netcat with IP address"
+[0m[32m	PASSED for resource: jobs(python-sast).steps[1](Checkout Code)
+[0m[35m	File: /.github/workflows/sast-scan.yml:15-22
+[0m[97mCheck: CKV_GHA_4: "Suspicious use of netcat with IP address"
+[0m[32m	PASSED for resource: jobs(python-sast).steps[2](Setup Snyk CLI)
+[0m[35m	File: /.github/workflows/sast-scan.yml:21-25
+[0m[97mCheck: CKV_GHA_4: "Suspicious use of netcat with IP address"
+[0m[32m	PASSED for resource: jobs(python-sast).steps[3](Run Snyk Code SAST Scan)
+[0m[35m	File: /.github/workflows/sast-scan.yml:24-33
+[0m[97mCheck: CKV_GHA_4: "Suspicious use of netcat with IP address"
+[0m[32m	PASSED for resource: jobs(python-sast).steps[4](Install Bandit)
+[0m[35m	File: /.github/workflows/sast-scan.yml:32-36
+[0m[97mCheck: CKV_GHA_4: "Suspicious use of netcat with IP address"
+[0m[32m	PASSED for resource: jobs(python-sast).steps[5](Run Bandit SAST Scan)
+[0m[35m	File: /.github/workflows/sast-scan.yml:35-38
+[0m[97mCheck: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+[0m[32m	PASSED for resource: jobs(python-sast).steps[1](Checkout Code)
+[0m[35m	File: /.github/workflows/sast-scan.yml:15-22
+[0m[97mCheck: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+[0m[32m	PASSED for resource: jobs(python-sast).steps[2](Setup Snyk CLI)
+[0m[35m	File: /.github/workflows/sast-scan.yml:21-25
+[0m[97mCheck: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+[0m[32m	PASSED for resource: jobs(python-sast).steps[3](Run Snyk Code SAST Scan)
+[0m[35m	File: /.github/workflows/sast-scan.yml:24-33
+[0m[97mCheck: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+[0m[32m	PASSED for resource: jobs(python-sast).steps[4](Install Bandit)
+[0m[35m	File: /.github/workflows/sast-scan.yml:32-36
+[0m[97mCheck: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+[0m[32m	PASSED for resource: jobs(python-sast).steps[5](Run Bandit SAST Scan)
+[0m[35m	File: /.github/workflows/sast-scan.yml:35-38
+[0m[97mCheck: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+[0m[32m	PASSED for resource: jobs(python-sast).steps[1](Checkout Code)
+[0m[35m	File: /.github/workflows/sast-scan.yml:15-22
+[0m[97mCheck: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+[0m[32m	PASSED for resource: jobs(python-sast).steps[2](Setup Snyk CLI)
+[0m[35m	File: /.github/workflows/sast-scan.yml:21-25
+[0m[97mCheck: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+[0m[32m	PASSED for resource: jobs(python-sast).steps[3](Run Snyk Code SAST Scan)
+[0m[35m	File: /.github/workflows/sast-scan.yml:24-33
+[0m[97mCheck: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+[0m[32m	PASSED for resource: jobs(python-sast).steps[4](Install Bandit)
+[0m[35m	File: /.github/workflows/sast-scan.yml:32-36
+[0m[97mCheck: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+[0m[32m	PASSED for resource: jobs(python-sast).steps[5](Run Bandit SAST Scan)
+[0m[35m	File: /.github/workflows/sast-scan.yml:35-38
+[0m[97mCheck: CKV_GHA_7: "The build output cannot be affected by user parameters other than the build entry point and the top-level source location. GitHub Actions workflow_dispatch inputs MUST be empty. "
+[0m[32m	PASSED for resource: on(Container Security Scan)
+[0m[35m	File: /.github/workflows/container-scan.yml:4-10
+[0m[97mCheck: CKV_GHA_6: "Found artifact build without evidence of cosign sbom attestation in pipeline"
+[0m[32m	PASSED for resource: jobs
+[0m[35m	File: /.github/workflows/container-scan.yml:10-49
+[0m[97mCheck: CKV_GHA_3: "Suspicious use of curl with secrets"
+[0m[32m	PASSED for resource: jobs(docker-container)
+[0m[35m	File: /.github/workflows/container-scan.yml:11-49
+[0m[97mCheck: CKV_GHA_4: "Suspicious use of netcat with IP address"
+[0m[32m	PASSED for resource: jobs(docker-container)
+[0m[35m	File: /.github/workflows/container-scan.yml:11-49
+[0m[97mCheck: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+[0m[32m	PASSED for resource: jobs(docker-container)
+[0m[35m	File: /.github/workflows/container-scan.yml:11-49
+[0m[97mCheck: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+[0m[32m	PASSED for resource: jobs(docker-container)
+[0m[35m	File: /.github/workflows/container-scan.yml:11-49
+[0m[97mCheck: CKV_GHA_5: "Found artifact build without evidence of cosign sign execution in pipeline"
+[0m[32m	PASSED for resource: jobs
+[0m[35m	File: /.github/workflows/container-scan.yml:10-49
+[0m[97mCheck: CKV_GHA_3: "Suspicious use of curl with secrets"
+[0m[32m	PASSED for resource: jobs(docker-container).steps[1](Checkout Code)
+[0m[35m	File: /.github/workflows/container-scan.yml:15-22
+[0m[97mCheck: CKV_GHA_3: "Suspicious use of curl with secrets"
+[0m[32m	PASSED for resource: jobs(docker-container).steps[2](Build Vulnerable Docker Image)
+[0m[35m	File: /.github/workflows/container-scan.yml:21-28
+[0m[97mCheck: CKV_GHA_3: "Suspicious use of curl with secrets"
+[0m[32m	PASSED for resource: jobs(docker-container).steps[3](Run Trivy Vulnerability Scanner)
+[0m[35m	File: /.github/workflows/container-scan.yml:27-41
+[0m[97mCheck: CKV_GHA_3: "Suspicious use of curl with secrets"
+[0m[32m	PASSED for resource: jobs(docker-container).steps[4](Run Snyk Container Scanner)
+[0m[35m	File: /.github/workflows/container-scan.yml:40-49
+[0m[97mCheck: CKV_GHA_4: "Suspicious use of netcat with IP address"
+[0m[32m	PASSED for resource: jobs(docker-container).steps[1](Checkout Code)
+[0m[35m	File: /.github/workflows/container-scan.yml:15-22
+[0m[97mCheck: CKV_GHA_4: "Suspicious use of netcat with IP address"
+[0m[32m	PASSED for resource: jobs(docker-container).steps[2](Build Vulnerable Docker Image)
+[0m[35m	File: /.github/workflows/container-scan.yml:21-28
+[0m[97mCheck: CKV_GHA_4: "Suspicious use of netcat with IP address"
+[0m[32m	PASSED for resource: jobs(docker-container).steps[3](Run Trivy Vulnerability Scanner)
+[0m[35m	File: /.github/workflows/container-scan.yml:27-41
+[0m[97mCheck: CKV_GHA_4: "Suspicious use of netcat with IP address"
+[0m[32m	PASSED for resource: jobs(docker-container).steps[4](Run Snyk Container Scanner)
+[0m[35m	File: /.github/workflows/container-scan.yml:40-49
+[0m[97mCheck: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+[0m[32m	PASSED for resource: jobs(docker-container).steps[1](Checkout Code)
+[0m[35m	File: /.github/workflows/container-scan.yml:15-22
+[0m[97mCheck: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+[0m[32m	PASSED for resource: jobs(docker-container).steps[2](Build Vulnerable Docker Image)
+[0m[35m	File: /.github/workflows/container-scan.yml:21-28
+[0m[97mCheck: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+[0m[32m	PASSED for resource: jobs(docker-container).steps[3](Run Trivy Vulnerability Scanner)
+[0m[35m	File: /.github/workflows/container-scan.yml:27-41
+[0m[97mCheck: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+[0m[32m	PASSED for resource: jobs(docker-container).steps[4](Run Snyk Container Scanner)
+[0m[35m	File: /.github/workflows/container-scan.yml:40-49
+[0m[97mCheck: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+[0m[32m	PASSED for resource: jobs(docker-container).steps[1](Checkout Code)
+[0m[35m	File: /.github/workflows/container-scan.yml:15-22
+[0m[97mCheck: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+[0m[32m	PASSED for resource: jobs(docker-container).steps[2](Build Vulnerable Docker Image)
+[0m[35m	File: /.github/workflows/container-scan.yml:21-28
+[0m[97mCheck: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+[0m[32m	PASSED for resource: jobs(docker-container).steps[3](Run Trivy Vulnerability Scanner)
+[0m[35m	File: /.github/workflows/container-scan.yml:27-41
+[0m[97mCheck: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+[0m[32m	PASSED for resource: jobs(docker-container).steps[4](Run Snyk Container Scanner)
+[0m[35m	File: /.github/workflows/container-scan.yml:40-49
+[0m[97mCheck: CKV_GHA_7: "The build output cannot be affected by user parameters other than the build entry point and the top-level source location. GitHub Actions workflow_dispatch inputs MUST be empty. "
+[0m[32m	PASSED for resource: on(IaC Security Scan)
+[0m[35m	File: /.github/workflows/iac-scan.yml:4-10
+[0m[97mCheck: CKV_GHA_6: "Found artifact build without evidence of cosign sbom attestation in pipeline"
+[0m[32m	PASSED for resource: jobs
+[0m[35m	File: /.github/workflows/iac-scan.yml:10-52
+[0m[97mCheck: CKV_GHA_3: "Suspicious use of curl with secrets"
+[0m[32m	PASSED for resource: jobs(terraform-iac)
+[0m[35m	File: /.github/workflows/iac-scan.yml:11-52
+[0m[97mCheck: CKV_GHA_4: "Suspicious use of netcat with IP address"
+[0m[32m	PASSED for resource: jobs(terraform-iac)
+[0m[35m	File: /.github/workflows/iac-scan.yml:11-52
+[0m[97mCheck: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+[0m[32m	PASSED for resource: jobs(terraform-iac)
+[0m[35m	File: /.github/workflows/iac-scan.yml:11-52
+[0m[97mCheck: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+[0m[32m	PASSED for resource: jobs(terraform-iac)
+[0m[35m	File: /.github/workflows/iac-scan.yml:11-52
+[0m[97mCheck: CKV_GHA_5: "Found artifact build without evidence of cosign sign execution in pipeline"
+[0m[32m	PASSED for resource: jobs
+[0m[35m	File: /.github/workflows/iac-scan.yml:10-52
+[0m[97mCheck: CKV_GHA_3: "Suspicious use of curl with secrets"
+[0m[32m	PASSED for resource: jobs(terraform-iac).steps[1](Checkout Code)
+[0m[35m	File: /.github/workflows/iac-scan.yml:15-22
+[0m[97mCheck: CKV_GHA_3: "Suspicious use of curl with secrets"
+[0m[32m	PASSED for resource: jobs(terraform-iac).steps[2](Run Checkov IaC Scan)
+[0m[35m	File: /.github/workflows/iac-scan.yml:21-32
+[0m[97mCheck: CKV_GHA_3: "Suspicious use of curl with secrets"
+[0m[32m	PASSED for resource: jobs(terraform-iac).steps[3](Run Trivy IaC Scan)
+[0m[35m	File: /.github/workflows/iac-scan.yml:31-44
+[0m[97mCheck: CKV_GHA_3: "Suspicious use of curl with secrets"
+[0m[32m	PASSED for resource: jobs(terraform-iac).steps[4](Run Snyk IaC Scan)
+[0m[35m	File: /.github/workflows/iac-scan.yml:43-52
+[0m[97mCheck: CKV_GHA_4: "Suspicious use of netcat with IP address"
+[0m[32m	PASSED for resource: jobs(terraform-iac).steps[1](Checkout Code)
+[0m[35m	File: /.github/workflows/iac-scan.yml:15-22
+[0m[97mCheck: CKV_GHA_4: "Suspicious use of netcat with IP address"
+[0m[32m	PASSED for resource: jobs(terraform-iac).steps[2](Run Checkov IaC Scan)
+[0m[35m	File: /.github/workflows/iac-scan.yml:21-32
+[0m[97mCheck: CKV_GHA_4: "Suspicious use of netcat with IP address"
+[0m[32m	PASSED for resource: jobs(terraform-iac).steps[3](Run Trivy IaC Scan)
+[0m[35m	File: /.github/workflows/iac-scan.yml:31-44
+[0m[97mCheck: CKV_GHA_4: "Suspicious use of netcat with IP address"
+[0m[32m	PASSED for resource: jobs(terraform-iac).steps[4](Run Snyk IaC Scan)
+[0m[35m	File: /.github/workflows/iac-scan.yml:43-52
+[0m[97mCheck: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+[0m[32m	PASSED for resource: jobs(terraform-iac).steps[1](Checkout Code)
+[0m[35m	File: /.github/workflows/iac-scan.yml:15-22
+[0m[97mCheck: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+[0m[32m	PASSED for resource: jobs(terraform-iac).steps[2](Run Checkov IaC Scan)
+[0m[35m	File: /.github/workflows/iac-scan.yml:21-32
+[0m[97mCheck: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+[0m[32m	PASSED for resource: jobs(terraform-iac).steps[3](Run Trivy IaC Scan)
+[0m[35m	File: /.github/workflows/iac-scan.yml:31-44
+[0m[97mCheck: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+[0m[32m	PASSED for resource: jobs(terraform-iac).steps[4](Run Snyk IaC Scan)
+[0m[35m	File: /.github/workflows/iac-scan.yml:43-52
+[0m[97mCheck: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+[0m[32m	PASSED for resource: jobs(terraform-iac).steps[1](Checkout Code)
+[0m[35m	File: /.github/workflows/iac-scan.yml:15-22
+[0m[97mCheck: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+[0m[32m	PASSED for resource: jobs(terraform-iac).steps[2](Run Checkov IaC Scan)
+[0m[35m	File: /.github/workflows/iac-scan.yml:21-32
+[0m[97mCheck: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+[0m[32m	PASSED for resource: jobs(terraform-iac).steps[3](Run Trivy IaC Scan)
+[0m[35m	File: /.github/workflows/iac-scan.yml:31-44
+[0m[97mCheck: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+[0m[32m	PASSED for resource: jobs(terraform-iac).steps[4](Run Snyk IaC Scan)
+[0m[35m	File: /.github/workflows/iac-scan.yml:43-52
+[0m[97mCheck: CKV_GHA_7: "The build output cannot be affected by user parameters other than the build entry point and the top-level source location. GitHub Actions workflow_dispatch inputs MUST be empty. "
+[0m[32m	PASSED for resource: on(SAST Security Scan)
+[0m[35m	File: /.github/workflows/sast-scan.yml:4-10
+[0m[97mCheck: CKV_GHA_6: "Found artifact build without evidence of cosign sbom attestation in pipeline"
+[0m[32m	PASSED for resource: jobs
+[0m[35m	File: /.github/workflows/sast-scan.yml:10-38
+[0m[97mCheck: CKV_GHA_3: "Suspicious use of curl with secrets"
+[0m[32m	PASSED for resource: jobs(python-sast)
+[0m[35m	File: /.github/workflows/sast-scan.yml:11-38
+[0m[97mCheck: CKV_GHA_4: "Suspicious use of netcat with IP address"
+[0m[32m	PASSED for resource: jobs(python-sast)
+[0m[35m	File: /.github/workflows/sast-scan.yml:11-38
+[0m[97mCheck: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+[0m[32m	PASSED for resource: jobs(python-sast)
+[0m[35m	File: /.github/workflows/sast-scan.yml:11-38
+[0m[97mCheck: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+[0m[32m	PASSED for resource: jobs(python-sast)
+[0m[35m	File: /.github/workflows/sast-scan.yml:11-38
+[0m[97mCheck: CKV_GHA_5: "Found artifact build without evidence of cosign sign execution in pipeline"
+[0m[32m	PASSED for resource: jobs
+[0m[35m	File: /.github/workflows/sast-scan.yml:10-38
+[0m[97mCheck: CKV_GHA_3: "Suspicious use of curl with secrets"
+[0m[32m	PASSED for resource: jobs(python-sast).steps[1](Checkout Code)
+[0m[35m	File: /.github/workflows/sast-scan.yml:15-22
+[0m[97mCheck: CKV_GHA_3: "Suspicious use of curl with secrets"
+[0m[32m	PASSED for resource: jobs(python-sast).steps[2](Setup Snyk CLI)
+[0m[35m	File: /.github/workflows/sast-scan.yml:21-25
+[0m[97mCheck: CKV_GHA_3: "Suspicious use of curl with secrets"
+[0m[32m	PASSED for resource: jobs(python-sast).steps[3](Run Snyk Code SAST Scan)
+[0m[35m	File: /.github/workflows/sast-scan.yml:24-33
+[0m[97mCheck: CKV_GHA_3: "Suspicious use of curl with secrets"
+[0m[32m	PASSED for resource: jobs(python-sast).steps[4](Install Bandit)
+[0m[35m	File: /.github/workflows/sast-scan.yml:32-36
+[0m[97mCheck: CKV_GHA_3: "Suspicious use of curl with secrets"
+[0m[32m	PASSED for resource: jobs(python-sast).steps[5](Run Bandit SAST Scan)
+[0m[35m	File: /.github/workflows/sast-scan.yml:35-38
+[0m[97mCheck: CKV_GHA_4: "Suspicious use of netcat with IP address"
+[0m[32m	PASSED for resource: jobs(python-sast).steps[1](Checkout Code)
+[0m[35m	File: /.github/workflows/sast-scan.yml:15-22
+[0m[97mCheck: CKV_GHA_4: "Suspicious use of netcat with IP address"
+[0m[32m	PASSED for resource: jobs(python-sast).steps[2](Setup Snyk CLI)
+[0m[35m	File: /.github/workflows/sast-scan.yml:21-25
+[0m[97mCheck: CKV_GHA_4: "Suspicious use of netcat with IP address"
+[0m[32m	PASSED for resource: jobs(python-sast).steps[3](Run Snyk Code SAST Scan)
+[0m[35m	File: /.github/workflows/sast-scan.yml:24-33
+[0m[97mCheck: CKV_GHA_4: "Suspicious use of netcat with IP address"
+[0m[32m	PASSED for resource: jobs(python-sast).steps[4](Install Bandit)
+[0m[35m	File: /.github/workflows/sast-scan.yml:32-36
+[0m[97mCheck: CKV_GHA_4: "Suspicious use of netcat with IP address"
+[0m[32m	PASSED for resource: jobs(python-sast).steps[5](Run Bandit SAST Scan)
+[0m[35m	File: /.github/workflows/sast-scan.yml:35-38
+[0m[97mCheck: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+[0m[32m	PASSED for resource: jobs(python-sast).steps[1](Checkout Code)
+[0m[35m	File: /.github/workflows/sast-scan.yml:15-22
+[0m[97mCheck: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+[0m[32m	PASSED for resource: jobs(python-sast).steps[2](Setup Snyk CLI)
+[0m[35m	File: /.github/workflows/sast-scan.yml:21-25
+[0m[97mCheck: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+[0m[32m	PASSED for resource: jobs(python-sast).steps[3](Run Snyk Code SAST Scan)
+[0m[35m	File: /.github/workflows/sast-scan.yml:24-33
+[0m[97mCheck: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+[0m[32m	PASSED for resource: jobs(python-sast).steps[4](Install Bandit)
+[0m[35m	File: /.github/workflows/sast-scan.yml:32-36
+[0m[97mCheck: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+[0m[32m	PASSED for resource: jobs(python-sast).steps[5](Run Bandit SAST Scan)
+[0m[35m	File: /.github/workflows/sast-scan.yml:35-38
+[0m[97mCheck: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+[0m[32m	PASSED for resource: jobs(python-sast).steps[1](Checkout Code)
+[0m[35m	File: /.github/workflows/sast-scan.yml:15-22
+[0m[97mCheck: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+[0m[32m	PASSED for resource: jobs(python-sast).steps[2](Setup Snyk CLI)
+[0m[35m	File: /.github/workflows/sast-scan.yml:21-25
+[0m[97mCheck: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+[0m[32m	PASSED for resource: jobs(python-sast).steps[3](Run Snyk Code SAST Scan)
+[0m[35m	File: /.github/workflows/sast-scan.yml:24-33
+[0m[97mCheck: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+[0m[32m	PASSED for resource: jobs(python-sast).steps[4](Install Bandit)
+[0m[35m	File: /.github/workflows/sast-scan.yml:32-36
+[0m[97mCheck: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+[0m[32m	PASSED for resource: jobs(python-sast).steps[5](Run Bandit SAST Scan)
+[0m[35m	File: /.github/workflows/sast-scan.yml:35-38
+[0m[97mCheck: CKV2_GHA_1: "Ensure top-level permissions are not set to write-all"
+[0m[31m	FAILED for resource: on(Container Security Scan)
+[0m[35m	File: /.github/workflows/container-scan.yml:0-1
+[0m[97mCheck: CKV2_GHA_1: "Ensure top-level permissions are not set to write-all"
+[0m[31m	FAILED for resource: on(IaC Security Scan)
+[0m[35m	File: /.github/workflows/iac-scan.yml:0-1
+[0m[97mCheck: CKV2_GHA_1: "Ensure top-level permissions are not set to write-all"
+[0m[31m	FAILED for resource: on(SAST Security Scan)
+[0m[35m	File: /.github/workflows/sast-scan.yml:0-1
+[0m[97mCheck: CKV2_GHA_1: "Ensure top-level permissions are not set to write-all"
+[0m[31m	FAILED for resource: on(Container Security Scan)
+[0m[35m	File: /.github/workflows/container-scan.yml:0-1
+[0m[97mCheck: CKV2_GHA_1: "Ensure top-level permissions are not set to write-all"
+[0m[31m	FAILED for resource: on(IaC Security Scan)
+[0m[35m	File: /.github/workflows/iac-scan.yml:0-1
+[0m[97mCheck: CKV2_GHA_1: "Ensure top-level permissions are not set to write-all"
+[0m[31m	FAILED for resource: on(SAST Security Scan)
+[0m[35m	File: /.github/workflows/sast-scan.yml:0-1
+[0m[0m[0m[0m
+[0m[0m[0m[0m[0m
+
