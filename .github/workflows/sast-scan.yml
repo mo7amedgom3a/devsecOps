@@ -1,0 +1,36 @@
+name: SAST Security Scan
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  python-sast:
+    name: Application Code Scan
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # ---------------------------------------------------------
+      # SNYK CODE SCANNER (Python Source Code SAST)
+      # ---------------------------------------------------------
+      - name: Setup Snyk CLI
+        uses: snyk/actions/setup@master
+
+      - name: Run Snyk Code SAST Scan
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        run: snyk code test --severity-threshold=high --org=31be863e-5019-422f-94bb-27b4b342ad48
+
+      # ---------------------------------------------------------
+      # BANDIT SCANNER (Python Source Code SAST)
+      # ---------------------------------------------------------
+      - name: Install Bandit
+        run: pip install bandit
+
+      - name: Run Bandit SAST Scan
+        run: bandit -r . -lll -iii

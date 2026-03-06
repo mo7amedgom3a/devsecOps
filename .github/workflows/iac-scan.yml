@@ -1,0 +1,50 @@
+name: IaC Security Scan
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  terraform-iac:
+    name: Infrastructure Code Scan
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # ---------------------------------------------------------
+      # CHECKOV SCANNER (Terraform IaC)
+      # ---------------------------------------------------------
+      - name: Run Checkov IaC Scan
+        uses: bridgecrewio/checkov-action@master
+        with:
+          directory: .
+          framework: terraform
+          soft_fail: true 
+
+      # ---------------------------------------------------------
+      # TRIVY SCANNER (Terraform IaC)
+      # ---------------------------------------------------------
+      - name: Run Trivy IaC Scan
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'config'
+          hide-progress: false
+          format: 'table'
+          exit-code: '0' 
+          severity: 'CRITICAL,HIGH'
+
+      # ---------------------------------------------------------
+      # SNYK IaC SCANNER (Terraform)
+      # ---------------------------------------------------------
+      - name: Run Snyk IaC Scan
+        uses: snyk/actions/iac@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          file: '.'
+          args: '--org=31be863e-5019-422f-94bb-27b4b342ad48 --severity-threshold=high --report'
+        continue-on-error: true
